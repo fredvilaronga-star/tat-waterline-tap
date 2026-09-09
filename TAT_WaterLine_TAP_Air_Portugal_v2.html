@@ -1,0 +1,1353 @@
+<!DOCTYPE html><html lang="pt"><head><meta charset="utf-8">
+<title>TAT WaterLine · TAP Air Portugal vs TAT</title><style>
+
+:root{--bg:#e6f2ea;--s1:#ffffff;--s2:#eef7f1;--b:#bfdccb;--tx:#0a2e1a;--mu:#4a7059;--mu2:#82a391;--acc:#009A44;--acc2:#16b45e;--gol:#0b4a26;--gol2:#1f7a46;--gold:#b07d1f;--gold2:#c9932f;--rd:#DA0032;--go:#cf8410;--gr:#0e9a67}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;font-size:14px;line-height:1.5}
+.mono{font-family:'SF Mono',Menlo,Consolas,monospace}
+.hdr{background:linear-gradient(135deg,#06170d,#0a2b18);border-bottom:1px solid var(--b);padding:16px 22px;display:flex;align-items:center;gap:14px}
+.hdr img{height:52px;border-radius:9px;box-shadow:0 3px 12px rgba(0,0,0,.4)}
+.htxt h1{font-size:17px;font-weight:800}.htxt h1 span{color:var(--acc)}
+.htxt p{font-size:11.5px;color:var(--mu);margin-top:2px}
+.conf{margin-left:auto;font-size:10px;color:var(--mu2);text-align:right;text-transform:uppercase;letter-spacing:.05em}
+.prembtn{background:rgba(227,176,74,.12);border:1px solid var(--gold);color:var(--gold);font-size:10.5px;font-weight:800;padding:6px 13px;border-radius:20px;cursor:pointer;text-transform:none;letter-spacing:0;transition:background .15s}
+.prembtn:hover{background:rgba(227,176,74,.22)}
+.prembar{display:flex;justify-content:center;background:var(--bg);padding:10px 14px;border-bottom:1px solid var(--b)}
+.molabel{background:linear-gradient(135deg,rgba(0,154,68,.16),rgba(0,154,68,.04));border:1px solid var(--gol);border-radius:11px;padding:12px 16px;margin-bottom:12px;font-size:13px;font-weight:700;color:var(--gol2);text-align:center}
+.molabel b{color:#fff}
+.wcard{position:relative;display:inline-flex;align-items:center;justify-content:center;min-width:104px;height:36px;border:1px solid var(--gol);border-radius:7px;overflow:hidden;background:var(--s2);margin:3px;vertical-align:middle}
+.wfill{position:absolute;left:0;top:0;height:100%;background:linear-gradient(90deg,var(--acc),var(--acc2));transition:width .3s}
+.wrt{position:relative;z-index:2;font-size:10px;font-weight:800;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.9),0 0 2px rgba(0,0,0,.9)}
+.wcard.nqin{border-color:var(--gold);border-width:2px}
+.wcard.nqzero{border-style:dashed;border-color:var(--mu);opacity:.55}
+.nqbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;background:var(--s1);border:1px solid var(--gol);border-radius:10px;padding:11px 15px;margin:10px 0;font-size:12.5px;font-weight:700;color:var(--gol2)}
+.wl-over25{border:1px solid var(--gold);border-radius:12px;background:linear-gradient(135deg,rgba(227,176,74,.10),rgba(227,176,74,.02));padding:12px 15px;margin:10px 0 14px}
+.wl-o-h{font-size:12.5px;color:var(--tx);font-weight:700;margin-bottom:10px;line-height:1.5}
+.wl-o-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:720px){.wl-o-row{grid-template-columns:1fr}}
+.wl-o-c{background:var(--s1);border:1px solid var(--b);border-radius:9px;padding:9px 11px;display:flex;flex-direction:column;gap:2px}
+.wl-o-r{font-size:13px;font-weight:800;color:var(--tx);font-family:ui-monospace,monospace}
+.wl-o-f{font-size:10px;color:var(--mu);font-weight:600}
+.wl-o-v{font-size:16px;font-weight:800;color:var(--gold);margin-top:3px}
+.wl-o-d{font-size:10px;color:var(--mu2)}
+.wl-o-note{font-size:11px;color:var(--mu);margin-top:9px;line-height:1.5}
+.nqbar input{background:var(--bg);border:1px solid var(--gol);border-radius:7px;color:var(--gol2);font-size:12.5px;font-weight:800;padding:6px 11px;width:200px;font-family:inherit}
+.nqhint{font-size:11px;color:var(--mu);font-weight:400}
+.navbar{background:var(--s1);border-bottom:1px solid var(--b);display:flex;gap:2px;padding:0 14px;overflow-x:auto}
+.tab{padding:13px 15px;font-size:12.5px;font-weight:700;color:var(--mu);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap}
+.tab.on{color:var(--acc);border-bottom-color:var(--acc)}.tab:hover{color:var(--tx)}
+.toggle{background:var(--s2);border-bottom:1px solid var(--b);padding:11px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.toggle .lbl{font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.seg{display:inline-flex;background:var(--bg);border:1px solid var(--b);border-radius:9px;overflow:hidden}
+.seg button{background:transparent;border:0;color:var(--mu);font-size:12.5px;font-weight:700;padding:8px 18px;cursor:pointer}
+.seg button.on{background:var(--acc);color:#fff}
+.qavin{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--mu);font-weight:700}
+.qavin input{width:66px;background:var(--bg);border:1px solid var(--gold);border-radius:7px;color:var(--gold);font-size:13px;font-weight:800;padding:6px 8px;text-align:right;font-family:'SF Mono',monospace}
+.tnote{font-size:11px;color:var(--mu2)}
+.main{max-width:1180px;margin:0 auto;padding:0}#p-dash,#p-prem,#p-oper,#p-proj,#p-malha,#p-wtril,#p-valid{max-width:1180px;margin:0 auto;padding:22px 18px 60px}
+.panel{display:none}.panel.on{display:block}
+.sec{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;color:var(--mu);margin:22px 0 12px;display:flex;align-items:center;gap:10px}
+.sec::after{content:"";flex:1;height:1px;background:var(--b)}
+.intro{background:linear-gradient(135deg,rgba(0,154,68,.10),transparent);border:1px solid var(--acc);border-radius:12px;padding:16px 20px;line-height:1.65;margin-bottom:18px;font-size:13px}
+.intro b{color:var(--acc)}
+/* HERO big R$ */
+.hero{background:linear-gradient(135deg,rgba(227,176,74,.18),rgba(227,176,74,.03));border:1px solid var(--gold);border-radius:16px;padding:24px 26px;margin-bottom:20px;text-align:center}
+.hero .hl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold2);font-weight:700}
+.hero .hv{font-size:52px;font-weight:900;color:var(--gold);line-height:1.05;margin:4px 0;letter-spacing:-.02em}
+.hero .hs{font-size:12.5px;color:var(--mu)}
+.hero2{display:flex;background:linear-gradient(135deg,rgba(227,176,74,.16),rgba(227,176,74,.02));border:1px solid var(--gold);border-radius:16px;overflow:hidden;margin-bottom:14px}
+.h2c{flex:1;padding:22px 26px;text-align:center}
+.h2sep{width:1px;background:var(--b)}
+.h2l{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--gold2);font-weight:700}
+.h2v{font-size:46px;font-weight:900;color:var(--gold);line-height:1.05;margin:4px 0;letter-spacing:-.02em}
+.h2s{font-size:11px;color:var(--mu)}
+@media(max-width:720px){.hero2{flex-direction:column}.h2sep{width:auto;height:1px}.h2v{font-size:34px}}
+.paxsmall{background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:11px 16px;font-size:13px;color:var(--mu);margin-bottom:6px}
+.paxsmall b{color:var(--tx)}.paxsmall b.gol{color:var(--gol2)}.paxsmall b.tat{color:var(--gold)}.paxsmall .red{color:var(--gr);font-weight:700}
+.derive{display:flex;align-items:stretch;gap:8px;overflow-x:auto;padding:4px 0 8px}
+.dstep{flex:0 0 auto;min-width:120px;background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:14px 16px;text-align:center}
+.dstep.hl{border-color:var(--gold);background:linear-gradient(135deg,rgba(227,176,74,.08),var(--s1))}
+.di{font-size:16px;margin-bottom:4px}
+.dvv{font-size:22px;font-weight:800;line-height:1.1}.dvv.gol{color:var(--gol2)}.dvv.tat{color:var(--gold)}
+.dl{font-size:10px;color:var(--mu);text-transform:uppercase;letter-spacing:.02em;margin-top:2px}
+.dop{flex:0 0 auto;display:flex;align-items:center;color:var(--mu2);font-size:11px;font-weight:700;padding:0 2px;white-space:nowrap}
+.kv2{font-size:22px;font-weight:800;line-height:1.1;margin-top:2px}.kv2.gol{color:var(--gol2)}.kv2.tat{color:var(--gold)}
+
+/* água por cliente flow */
+.paxflow{display:flex;align-items:stretch;gap:0;margin-bottom:20px;border-radius:14px;overflow:hidden;border:1px solid var(--b)}
+.pf{flex:1;padding:18px 20px;text-align:center}
+.pf.gol{background:linear-gradient(135deg,rgba(0,154,68,.13),var(--s1))}
+.pf.tat{background:linear-gradient(135deg,rgba(227,176,74,.13),var(--s1))}
+.pfl{font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--mu);font-weight:700}
+.pfv{font-size:40px;font-weight:900;line-height:1.1;margin:2px 0}
+.pf.gol .pfv{color:var(--gol2)}.pf.tat .pfv{color:var(--gold)}
+.pfs{font-size:11px;color:var(--mu2)}
+.pfarrow{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 16px;background:var(--s2);color:var(--gr);font-weight:900;font-size:16px}
+.pfarrow small{font-size:9px;color:var(--mu);font-weight:600;text-transform:uppercase}
+.cmp2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:720px){.cmp2{grid-template-columns:1fr}.hero .hv{font-size:40px}.pfv{font-size:30px}}
+.col{background:var(--s1);border:1px solid var(--b);border-radius:14px;overflow:hidden}
+.col.gol{border-color:var(--gol)}.col.gol .colh{background:rgba(0,154,68,.12);color:var(--gol2)}
+.col.tat{border-color:var(--gold)}.col.tat .colh{background:rgba(227,176,74,.13);color:var(--gold)}
+.colh{padding:14px 18px;font-weight:800;font-size:14px;border-bottom:1px solid var(--b);display:flex;align-items:center;gap:8px}
+.colb{padding:18px}
+.k{margin-bottom:16px;padding-bottom:15px;border-bottom:1px solid var(--b)}.k:last-child{margin-bottom:0;padding-bottom:0;border-bottom:0}
+.kl{font-size:10.5px;color:var(--mu);text-transform:uppercase;letter-spacing:.03em}
+.kv{font-size:27px;font-weight:800;line-height:1.12;margin-top:2px}
+.kv.big{font-size:36px}
+.kv.gol{color:var(--gol2)}.kv.tat{color:var(--gold)}
+.ks{font-size:10.5px;color:var(--mu2);margin-top:2px}
+.mon0{margin-top:10px;font-size:11px;color:var(--rd);background:rgba(255,91,110,.09);border:1px solid rgba(255,91,110,.3);border-radius:7px;padding:8px 11px;font-weight:600}
+.mon0 b{color:var(--rd)}
+.subk{display:flex;gap:14px;flex-wrap:wrap}
+.subk .sk{flex:1;min-width:100px}.sk .v{font-size:19px;font-weight:800}.sk .l{font-size:10px;color:var(--mu);text-transform:uppercase}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+.tw{overflow-x:auto;border:1px solid var(--b);border-radius:10px}
+th{background:var(--s2);padding:9px 11px;text-align:left;font-size:10.5px;text-transform:uppercase;letter-spacing:.03em;color:var(--mu);font-weight:700}
+td{padding:8px 11px;border-top:1px solid var(--b)}td.c{text-align:center}
+.golw{color:var(--gol2);font-weight:700}.tatw{color:var(--gold);font-weight:700}
+.red{color:var(--gr);font-weight:700}
+.warn{background:rgba(255,176,32,.08);border:1px solid var(--go);border-radius:8px;padding:10px 14px;font-size:12px;color:var(--go);margin:10px 0}
+.ptbl{background:var(--s1);border:1px solid var(--b);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.ptbl h3{font-size:13px;font-weight:800;color:var(--acc);margin-bottom:12px;text-transform:uppercase;letter-spacing:.03em}
+.prow{display:flex;justify-content:space-between;gap:12px;padding:7px 0;border-top:1px solid var(--b);font-size:12.5px}
+.prow:first-of-type{border-top:0}.prl{color:var(--mu)}.prv{color:var(--tx);font-weight:600;text-align:right}
+.rulebox{background:var(--s2);border:1px solid var(--acc);border-radius:10px;padding:14px 16px;margin:10px 0}.rulebox b{color:var(--acc)}
+
+
+.epgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:8px}
+@media(max-width:820px){.epgrid{grid-template-columns:1fr}}
+.epanel{border:1px solid var(--b);border-radius:16px;overflow:hidden;background:var(--s1)}
+.epanel.gol{border-color:rgba(0,154,68,.5)}.epanel.tat{position:relative;border:1px solid transparent;background:linear-gradient(var(--s1),var(--s1)) padding-box,linear-gradient(135deg,#f9de92,#e3b04a,#a9791f,#f4cd72) border-box;box-shadow:0 0 26px rgba(227,176,74,.20),inset 0 1px 0 rgba(255,255,255,.07)}
+.eph{display:flex;align-items:center;gap:12px;padding:16px 18px;border-bottom:1px solid var(--b);min-height:92px}
+.epbadge{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:14px;flex:0 0 44px;overflow:hidden}
+.epbadge img{width:100%;height:100%;object-fit:cover;border-radius:inherit;display:block}
+.epbadge.gol{background:linear-gradient(135deg,var(--gol),#0b4a26);color:#fff}
+.epbadge.tat{background:linear-gradient(135deg,var(--gold),#b8862e);color:#20140a}
+.ept{font-size:15px;font-weight:800}.epanel.gol .ept{color:var(--gol2)}.epanel.tat .ept{color:var(--gold)}
+.eps{font-size:11px;color:var(--mu);margin-top:1px}
+.ehero{padding:22px 20px;text-align:center;border-bottom:1px solid var(--b)}
+.ehero.gol{background:linear-gradient(135deg,rgba(0,154,68,.09),transparent)}
+.ehero.tat{background:linear-gradient(135deg,rgba(244,205,114,.20),rgba(227,176,74,.05),transparent)}
+.ehl{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--mu);font-weight:700}
+.ehv{font-size:48px;font-weight:900;line-height:1.05;margin:4px 0;letter-spacing:-.02em}
+.ehero.gol .ehv{color:var(--gol2)}.ehero.tat .ehv{color:var(--gold)}
+.ehs{font-size:11px;color:var(--mu);min-height:33px}
+.ehnote{margin-top:12px;font-size:11px;padding:8px 12px;border-radius:8px;background:rgba(214,58,76,.08);border:1px solid rgba(214,58,76,.35);color:#b0263a;text-align:left;min-height:53px;box-sizing:border-box}
+.ehnote.tat{background:rgba(14,154,103,.09);border-color:rgba(14,154,103,.35);color:#0b7a52}.ehnote b{color:var(--tx)}
+.erow{padding:14px 18px;border-bottom:1px solid var(--b)}
+.erl{font-size:10px;text-transform:uppercase;letter-spacing:.03em;color:var(--mu);font-weight:700}
+.erv{font-size:26px;font-weight:800;line-height:1.1;margin-top:2px;color:var(--tx)}
+.erv.gol{color:var(--gol2)}.erv.tat{color:var(--gold)}.erv.gr{color:var(--gr)}
+.ers{font-size:10.5px;color:var(--mu2);margin-top:2px}
+.ewater{padding:14px 18px;border-bottom:1px solid var(--b)}
+.ewater.gol{background:rgba(0,154,68,.04)}.ewater.tat{background:rgba(227,176,74,.04)}
+.ewt{font-size:10px;text-transform:uppercase;letter-spacing:.03em;color:var(--mu);font-weight:700;margin-bottom:10px}
+.ewg{display:flex;gap:10px;text-align:center}.ewc{flex:1}
+.ewv{font-size:19px;font-weight:800;color:var(--tx)}.ewv.big{font-size:24px}.ewv.gol{color:var(--gol2)}.ewv.tat{color:var(--gold)}
+.ewl{font-size:9.5px;color:var(--mu2);margin-top:2px;line-height:1.3}
+.ebars{padding:14px 18px}
+.ebt{font-size:10px;text-transform:uppercase;letter-spacing:.03em;color:var(--mu);font-weight:700;margin-bottom:10px}
+.ebar{display:flex;align-items:center;gap:8px;margin-bottom:6px;font-size:11px}
+.ebl{flex:0 0 78px;color:var(--mu);font-weight:600}
+.ebtrack{flex:1;height:16px;background:var(--s2);border-radius:4px;overflow:hidden}
+.ebtrack i{display:block;height:100%;border-radius:4px}.ebtrack i.gol{background:linear-gradient(90deg,var(--gol),var(--gol2))}.ebtrack i.tat{background:linear-gradient(90deg,var(--gold),var(--gold2))}
+.ebv{flex:0 0 auto;font-family:'SF Mono',monospace;font-weight:700;font-size:11px;color:var(--tx)}
+
+.foot{text-align:center;font-size:10.5px;color:var(--mu2);padding:24px;border-top:1px solid var(--b);margin-top:30px}
+.mstats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.mstat{background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:10px 14px;flex:1;min-width:130px}
+.mstat .v{font-size:20px;font-weight:800}.mstat .l{font-size:10px;color:var(--mu);text-transform:uppercase}
+.mleg{display:flex;gap:14px;font-size:11px;color:var(--mu);margin-bottom:12px;align-items:center;flex-wrap:wrap}
+.mchip{display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:middle;margin-right:4px}
+.malha{border:1px solid var(--b);border-radius:12px;overflow-x:auto;overflow-y:hidden;background:var(--s1)}
+.mrow{display:flex;align-items:center;gap:8px;padding:6px 10px;border-top:1px solid var(--b);width:max-content;min-width:100%}
+.mrow:first-child{border-top:0}.mrow:hover{background:rgba(255,255,255,.02)}
+.mfleet{flex:0 0 46px;font-size:9.5px;font-weight:800;color:var(--mu2);text-align:center;background:var(--s2);border-radius:5px;padding:3px 2px;position:sticky;left:8px;z-index:3;box-shadow:6px 0 8px -4px rgba(0,0,0,.55)}
+.mfleet.a330{color:var(--gold);background:rgba(227,176,74,.13)}
+.mfleet.cargo{color:#b98a5a;background:rgba(185,138,90,.14)}
+.mdiv{padding:9px 12px;font-size:10.5px;font-weight:800;letter-spacing:.02em;color:var(--tx);background:var(--s2);border-top:1px solid var(--b);border-bottom:1px solid var(--b)}
+.mcards{display:flex;gap:5px;padding-bottom:2px}
+.mcard{flex:0 0 auto;font-size:10px;font-weight:600;padding:5px 8px;border-radius:6px;background:var(--s2);border:1px solid var(--b);color:var(--mu);white-space:nowrap;font-family:'SF Mono',Menlo,monospace}
+.mtime{font-size:8px;color:var(--mu2);margin-right:4px;font-family:'SF Mono',monospace;font-weight:700}
+.mcard.fill .mtime,.wrt .mtime{color:rgba(255,255,255,.8)}
+.mcard.fill{background:linear-gradient(135deg,var(--acc),var(--acc2));border-color:var(--acc);color:#fff;box-shadow:0 2px 8px rgba(0,180,230,.35)}
+.mcard.fill b{font-weight:800}.mcard .amt{font-size:8.5px;opacity:.92;margin-left:3px}
+.mbrk{flex:0 0 auto;font-size:11px;color:var(--go);padding:0 3px;align-self:center}
+.vex{background:var(--s1);border:1px solid var(--b);border-radius:12px;padding:16px 18px;margin-bottom:14px}
+.vex h3{font-size:13px;color:var(--acc);font-weight:800;margin-bottom:12px}
+.vstep{display:flex;gap:10px;padding:7px 0;font-size:12.5px;align-items:flex-start}
+.vn{flex:0 0 22px;height:22px;border-radius:50%;background:var(--acc);color:#fff;font-size:11px;font-weight:800;display:flex;align-items:center;justify-content:center}
+.vstep b{color:var(--tx)}
+.vzones{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:14px}
+@media(max-width:720px){.vzones{grid-template-columns:1fr}}
+.vz{border-radius:11px;padding:14px 16px;border:1px solid}
+.vz.blue{background:rgba(64,200,232,.08);border-color:#40c8e8}.vz.amber{background:rgba(255,176,32,.08);border-color:var(--go)}.vz.green{background:rgba(32,232,152,.08);border-color:var(--gr)}
+.vzt{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
+.vz.blue .vzt{color:#40c8e8}.vz.amber .vzt{color:var(--go)}.vz.green .vzt{color:var(--gr)}
+.vzv{font-size:22px;font-weight:800}.vzp{font-size:11px;color:var(--mu)}.vzd{font-size:10.5px;color:var(--mu2);margin-top:6px;line-height:1.5}
+.vmt{width:100%;border-collapse:collapse;font-size:11px}
+.vmt th{background:var(--s2);padding:6px 5px;font-size:9.5px;text-align:center}
+.vmt td{padding:5px;text-align:center;border-top:1px solid var(--b);font-family:'SF Mono',Menlo,monospace}
+.vmc.blue{background:rgba(64,200,232,.16);color:#bfeaf6}.vmc.amber{background:rgba(255,176,32,.16);color:#ffe0a0}.vmc.green{background:rgba(32,232,152,.16);color:#b0f5d8}
+.vmb{color:var(--mu);font-weight:700}
+
+.prem-edit{background:var(--s2);border:1px solid var(--gold);border-radius:10px;padding:14px 16px;margin:10px 0}
+.prem-edit .pl{font-size:11px;color:var(--mu);text-transform:uppercase;letter-spacing:.03em;font-weight:700}
+.pein{display:flex;align-items:center;gap:8px;margin-top:6px}
+.cowgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:5px 10px;margin:6px 0 2px}
+.cowgrid label{display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:10.5px;color:var(--mu);font-weight:600}
+.cowgrid input{width:76px;background:var(--s1);border:1px solid var(--gold);border-radius:5px;color:var(--gold);padding:3px 6px;font-size:12px;font-weight:800;font-family:ui-monospace,monospace;text-align:right}
+.pein input{width:90px;background:var(--bg);border:1px solid var(--gold);border-radius:7px;color:var(--gold);font-size:15px;font-weight:800;padding:7px 9px;text-align:right;font-family:'SF Mono',monospace}
+.pein span{font-size:12px;color:var(--mu)}
+.corsia{margin-top:8px;font-size:11px;padding:8px 11px;border-radius:8px;font-weight:600}
+.corsia.no{background:rgba(214,58,76,.08);border:1px solid rgba(214,58,76,.35);color:#b0263a}
+.corsia.yes{background:rgba(14,154,103,.09);border:1px solid rgba(14,154,103,.35);color:#0b7a52}
+.corsia b{color:var(--tx)}
+.premrow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:720px){.premrow{grid-template-columns:1fr}}
+.premc{background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:13px 15px}
+.premt{font-size:12px;font-weight:800;color:var(--acc);text-transform:uppercase;letter-spacing:.03em;margin-bottom:9px}
+.premi{font-size:12px;color:var(--mu);padding:3px 0}.premi b{color:var(--tx)}
+.pmo{display:inline-block;font-size:9.5px;color:var(--mu2);margin-left:6px;text-transform:uppercase;letter-spacing:.03em}
+
+/* === HEADER · CORES Azul === */
+.hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding:22px 28px;background:linear-gradient(180deg,var(--s2),var(--s1));border-bottom:1px solid var(--b);flex-wrap:wrap}
+.brandwrap{display:flex;align-items:flex-start;gap:18px;flex:1;min-width:280px}
+.tatlogo{width:92px;height:92px;border-radius:16px;flex-shrink:0;box-shadow:0 4px 18px rgba(0,0,0,.4)}
+.htxt{min-width:0}
+.htitle{font-size:23px;font-weight:800;color:var(--tx);line-height:1.15}
+.htag{color:var(--gold);font-style:italic;font-weight:700;font-size:17px}
+.hsub{font-size:13px;color:var(--mu);margin-top:4px}
+.hind{font-size:13px;color:var(--gol2);font-weight:700;margin-top:5px}
+.hbadges{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.hpill{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:800;padding:8px 14px;border-radius:9px;border:1px solid var(--b);background:var(--s1);color:var(--mu);text-decoration:none;cursor:pointer;letter-spacing:.02em}
+.hpill.web{color:var(--gol2);border-color:rgba(0,154,68,.45)}
+.hpill.date{color:var(--gr);border-color:rgba(32,232,152,.4)}
+.hpill.exp{background:linear-gradient(135deg,var(--gol),var(--acc2));color:#fff;border:none;box-shadow:0 3px 10px rgba(0,154,68,.35)}
+.hpill.exp:hover{filter:brightness(1.08)}
+.hright{display:flex;flex-direction:column;align-items:flex-end;gap:8px;text-align:right}
+.hannual{font-size:12.5px;color:var(--gold);font-weight:700;line-height:1.5}
+.haudit{font-size:11px;color:var(--gr);font-weight:600}
+.detailrow{display:flex;align-items:center;gap:11px;padding:11px 28px;background:var(--bg);border-bottom:1px solid var(--b)}
+.dlabel{font-size:10px;color:var(--mu2);letter-spacing:.12em;font-weight:800}
+.dpill{font-size:11.5px;font-weight:800;padding:8px 15px;border-radius:9px;border:1px solid var(--gold);background:rgba(227,176,74,.12);color:var(--gold);cursor:pointer}
+.dpill:hover{background:rgba(227,176,74,.22)}
+/* === TABS === */
+.navbar{display:flex;gap:12px;padding:16px 28px;background:var(--bg);flex-wrap:wrap;border-bottom:1px solid var(--b)}
+.tab{display:flex;align-items:center;gap:8px;font-size:15px;font-weight:700;padding:13px 22px;border-radius:12px;background:var(--s1);border:1px solid var(--b);color:var(--mu);cursor:pointer;transition:all .15s}
+.tab:hover{background:var(--s2);color:var(--tx)}
+.tab.on{background:linear-gradient(135deg,var(--gol),var(--acc2));color:#fff;border-color:transparent;box-shadow:0 4px 16px rgba(0,154,68,.4)}
+@media(max-width:640px){.htitle{font-size:19px}.tatlogo{width:70px;height:70px}.tab{font-size:13px;padding:11px 16px}}
+
+/* === VOOS MONITORADOS === */
+.mon-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:12px 0 4px}
+@media(max-width:820px){.mon-kpis{grid-template-columns:1fr 1fr}}
+.mon-k{background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:13px 15px}
+.mon-kv{font-size:28px;font-weight:900;line-height:1.1;letter-spacing:-.01em}
+.mon-kl{font-size:12px;font-weight:700;color:var(--tx);margin-top:3px}
+.mon-ks{font-size:10.5px;color:var(--mu);margin-top:2px;line-height:1.4}
+.mon-tb{width:100%;border-collapse:collapse;font-size:12px;background:var(--s1);border:1px solid var(--b);border-radius:10px;overflow:hidden;margin-top:6px}
+.mon-tb thead th{padding:8px 10px;background:#08381f;color:#fff;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.01em}
+.mon-tb td{padding:7px 10px;border-top:1px solid var(--b)}
+.mon-tb td.n{text-align:right;font-variant-numeric:tabular-nums}
+.mon-tb td.mu{color:var(--mu);font-size:11.4px}
+.mon-flt{display:flex;flex-wrap:wrap;gap:9px;align-items:center;margin:10px 0 2px}
+.mon-flt input,.mon-flt select{background:var(--s1);border:1px solid var(--b);border-radius:8px;color:var(--tx);font-size:12.5px;padding:7px 10px;font-family:inherit}
+.mon-flt input{min-width:230px}
+.mon-cnt{font-size:11.5px;color:var(--mu);font-weight:700;margin-left:auto}
+.mon-wrap{overflow-x:auto}
+.mon-list td{font-variant-numeric:tabular-nums;white-space:nowrap}
+.mon-lv{font-weight:800}
+.mon-pg{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:11px;font-size:12px;color:var(--mu)}
+.mon-pg button{background:var(--s1);border:1px solid var(--b);border-radius:8px;color:var(--tx);font-size:12px;font-weight:700;padding:7px 14px;cursor:pointer;font-family:inherit}
+.mon-pg button:hover{background:var(--s2)}
+/* hero Azul clicavel com o resultado medido */
+.ehero.gol.golclk{cursor:pointer;transition:background .15s}
+.ehero.gol.golclk:hover{background:linear-gradient(135deg,rgba(31,78,148,.17),transparent)}
+.ehnote.golnote{background:rgba(31,78,148,.07);border:1px solid rgba(31,78,148,.32);color:var(--tx);text-align:left;line-height:1.55;min-height:0}
+.ehnote.golnote b{color:var(--gol)}
+.golgo{display:block;margin-top:7px;font-size:11.5px;font-weight:800;color:var(--gol2)}
+.golwas{display:inline-block;font-size:11px;font-weight:800;color:var(--mu);letter-spacing:.02em}
+/* === TRILHO CNF === */
+.tri-intro{background:var(--s1);border:1px solid var(--b);border-left:3px solid var(--gol2);border-radius:9px;padding:10px 14px;margin:10px 0;font-size:12px;line-height:1.55;color:var(--tx)}
+.tri-leg{display:flex;flex-wrap:wrap;gap:16px;margin:10px 0 14px;font-size:11.5px;color:var(--mu);font-weight:700}
+.tri-leg span{display:flex;align-items:center;gap:6px}
+.tl-b{display:inline-block;width:22px;height:9px;border-radius:3px}
+i.tl-pol,.tl-b.tl-pol{background:var(--gol2)}
+i.tl-real,.tl-b.tl-real{background:var(--gol)}
+i.tl-wl,.tl-b.tl-wl{background:var(--acc2)}
+.tri-card{background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:13px 15px;margin-bottom:12px}
+.tri-hd{display:flex;align-items:center;gap:9px;flex-wrap:wrap;font-size:13px;font-weight:800;color:var(--tx);margin-bottom:10px}
+.tri-hd .tag{font-size:11px;color:var(--mu);font-weight:600}
+.tri-badge{margin-left:auto;background:rgba(8,40,88,.09);border:1px solid var(--gol2);color:var(--gol);border-radius:20px;padding:2px 12px;font-size:11.5px;font-weight:800}
+.tri-e{flex:1 1 170px;background:var(--s2);border:1px solid var(--b);border-radius:9px;padding:9px 11px;text-align:center}
+.tri-e.tri-off{background:repeating-linear-gradient(135deg,var(--s2),var(--s2) 7px,rgba(184,205,230,.35) 7px,rgba(184,205,230,.35) 14px)}
+.tri-et{font-size:9.5px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;color:var(--mu)}
+.tri-ev{font-size:24px;font-weight:900;color:var(--gol);line-height:1.2;margin:2px 0}
+.tri-e.tri-off .tri-ev{color:var(--mu2)}
+.tri-es{font-size:10px;color:var(--mu2);line-height:1.35}
+.tri-ar{align-self:center;color:var(--mu2);font-size:16px;font-weight:800}
+.tri-row{display:flex;align-items:center;gap:9px;margin:5px 0;flex-wrap:wrap}
+.tri-lbl{flex:0 0 128px;font-size:10.5px;font-weight:800;text-align:right}
+.tri-lbl.tl-pol{color:var(--gol2)}.tri-lbl.tl-real{color:var(--gol)}.tri-lbl.tl-wl{color:var(--acc)}
+.tri-bar{flex:1 1 150px;height:15px;background:var(--s2);border:1px solid var(--b);border-radius:4px;overflow:hidden;min-width:120px}
+.tri-bar i{display:block;height:100%}
+.tri-val{flex:0 0 108px;font-size:11.5px;font-weight:800;color:var(--tx);font-variant-numeric:tabular-nums}
+.tri-sub{flex:1 1 190px;font-size:10.5px;color:var(--mu)}
+.tri-sum{display:flex;align-items:center;gap:14px;margin-top:10px;padding-top:9px;border-top:1px solid var(--b);flex-wrap:wrap}
+.tri-sep{width:1px;height:24px;background:var(--b)}
+.tri-k{font-size:17px;font-weight:900;color:var(--gol);margin-right:6px}
+.tri-m{font-size:15px;font-weight:800;color:var(--tx);margin-right:6px}
+.tri-q{font-size:15px;font-weight:800;color:var(--acc);margin-right:6px}
+.tri-l{font-size:10.5px;color:var(--mu)}
+.tri-foot{font-size:10.6px;color:var(--mu2);line-height:1.6;margin-top:6px}
+/* projecao medida */
+.pj-cmp{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:12px 0}
+@media(max-width:720px){.pj-cmp{grid-template-columns:1fr}}
+.pj-c{background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:14px 16px}
+.pj-c.real{border-left:3px solid var(--gol)}
+.pj-t{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--mu)}
+.pj-v{font-size:32px;font-weight:900;color:var(--gol2);line-height:1.1;margin:3px 0}
+.pj-c.real .pj-v{color:var(--gol)}
+.pj-s{font-size:11.5px;color:var(--mu);line-height:1.5}
+/* hero Azul em uma linha: declarado x medido */
+.golrow{display:flex;align-items:flex-end;justify-content:center;gap:16px;flex-wrap:wrap;margin:6px 0 2px}
+.golsm{text-align:right}
+.golsm-t{font-size:9.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--mu);line-height:1.3}
+.golsm-v{font-size:24px;font-weight:900;color:var(--mu);line-height:1.15;opacity:.75}
+.golar{font-size:20px;font-weight:900;color:var(--mu2);padding-bottom:5px}
+.golbig{text-align:left}
+.golbig-t{font-size:9.5px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--gol2);line-height:1.3}
+.golbig .ehv{margin:0}
+@media(max-width:560px){.golrow{gap:9px}.golsm-v{font-size:19px}.golar{transform:rotate(90deg)}}
+/* valor declarado x medido nos blocos da Azul */
+.decl{display:block;font-size:10px;font-weight:700;color:var(--mu2);margin-top:2px;letter-spacing:.01em}
+.decl b{color:var(--mu);font-weight:800}
+/* alinhamento dos dois quadros linha a linha */
+@supports(grid-template-rows:subgrid){
+  .epgrid{grid-template-rows:auto auto auto auto auto}
+  .epgrid>.epanel{display:grid;grid-template-rows:subgrid;grid-row:span 5;align-content:start}
+}
+
+.tri-cells{flex:1 1 300px;display:flex;gap:8px;min-width:0}
+.tri-cell{flex:1 1 0;min-width:0;display:flex;align-items:center;gap:6px}
+.tri-cell .tri-bar{flex:1 1 auto;min-width:34px}
+.tri-cell .tri-q{flex:0 0 42px;font-size:11px;font-weight:800;text-align:right;font-variant-numeric:tabular-nums;color:var(--tx);margin:0}
+.tri-hdrow{margin-bottom:6px}
+.tri-ch{display:block;text-align:center;background:var(--s2);border:1px solid var(--b);border-radius:8px;padding:6px 6px;line-height:1.35}
+.tri-ch b{display:block;font-size:13px;color:var(--gol);font-weight:900}
+.tri-ch span{display:block;font-size:9.5px;color:var(--mu)}
+.tri-ch .tri-onda{font-size:9px;color:var(--mu2);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.tri-tail{flex:0 0 210px;font-size:10.5px;color:var(--mu);font-weight:700}
+.tri-qv{font-size:15px;font-weight:800;color:var(--acc);margin-right:6px}
+@media(max-width:720px){.tri-tail{flex:1 1 100%;text-align:right}.tri-lbl{flex:1 1 100%;text-align:left}}
+/* cabecalho da projecao consolidada: valor volta a ser inline */
+.cons5-h .rpx{display:inline;font-size:inherit;font-weight:800;color:var(--gol2)}
+.cons5-h>span{display:block;font-size:10.5px;font-weight:600;color:var(--mu);margin-top:4px;line-height:1.6}
+/* equivalencia comercial 2T26 */
+.ebq{border:1px solid var(--gol2);border-radius:14px;background:linear-gradient(135deg,rgba(31,78,148,.10),rgba(31,78,148,.02));padding:15px 18px;margin:14px 0 6px;cursor:pointer;transition:border-color .15s,transform .15s,box-shadow .15s}
+.ebq:hover{border-color:var(--gol);transform:translateY(-1px);box-shadow:0 6px 20px rgba(31,78,148,.14)}
+.ebq-h{font-size:13px;font-weight:800;color:var(--gol);margin-bottom:12px}
+.ebq-h>span{display:block;font-size:10.5px;font-weight:600;color:var(--mu);margin-top:4px;line-height:1.6}
+.ebq-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.ebq-row{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.ebq-row{grid-template-columns:1fr}}
+.ebq-c{background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:11px 13px}
+.ebq-c.ebq-hi{border-color:var(--gol2);background:rgba(31,78,148,.07)}
+.ebq-v{font-size:30px;font-weight:900;color:var(--gol2);line-height:1.08;letter-spacing:-.01em}
+.ebq-c.ebq-hi .ebq-v{color:var(--gol)}
+.ebq-l{font-size:11.5px;font-weight:800;color:var(--tx);margin-top:5px}
+.ebq-s{font-size:10px;color:var(--mu);margin-top:3px;line-height:1.45}
+.ebq-chain{display:flex;align-items:stretch;gap:9px;flex-wrap:wrap;margin-top:12px}
+.ebq-step{flex:1 1 150px;background:var(--s1);border:1px solid var(--b);border-radius:9px;padding:9px 12px;text-align:center}
+.ebq-step b{display:block;font-size:19px;font-weight:900;color:var(--gol2);line-height:1.2}
+.ebq-step span{display:block;font-size:10px;color:var(--mu);line-height:1.4;margin-top:2px}
+.ebq-step.ebq-end{border-color:var(--gol2);background:rgba(31,78,148,.08)}
+.ebq-step.ebq-end b{color:var(--gol)}
+.ebq-op{align-self:center;font-size:12.5px;font-weight:900;color:var(--mu2);white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:640px){.ebq-op{flex:1 1 100%;text-align:center}}
+.ebq-punch{margin-top:12px;padding:11px 15px;background:rgba(31,78,148,.09);border-left:4px solid var(--gol2);border-radius:6px;font-size:13px;color:var(--tx);line-height:1.6}
+.ebq-punch b{color:var(--gol);font-weight:900}
+/* ponte trimestre -> ano */
+.ebq-brg{display:flex;align-items:stretch;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.ebq-b{flex:1 1 260px;background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:11px 14px}
+.ebq-b.ebq-bhi{border-color:var(--gol2);background:rgba(31,78,148,.07)}
+.ebq-bt{font-size:9.5px;font-weight:800;letter-spacing:.045em;text-transform:uppercase;color:var(--mu)}
+.ebq-bv{font-size:26px;font-weight:900;color:var(--gol2);line-height:1.12;margin:1px 0 3px}
+.ebq-b.ebq-bhi .ebq-bv{color:var(--gol)}
+.ebq-bs{font-size:10.5px;color:var(--mu);line-height:1.5}
+.ebq-bs b{color:var(--tx);font-weight:800}
+.ebq-bop{align-self:center;font-size:12.5px;font-weight:900;color:var(--gol2);white-space:nowrap;background:var(--s1);border:1px solid var(--b);border-radius:20px;padding:5px 13px}
+@media(max-width:640px){.ebq-bop{flex:1 1 100%;text-align:center}}
+/* consolidado e equivalencia lado a lado */
+.topgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch;margin:20px 0 6px}
+@media(max-width:1080px){.topgrid{grid-template-columns:1fr}}
+.topgrid>.cons5,.topgrid>.ebq{margin:0;height:100%;box-sizing:border-box}
+.topgrid .cons5-row,.topgrid .ebq-row{grid-template-columns:repeat(2,1fr)}
+.topgrid .cons5-v{font-size:27px}
+.topgrid .ebq-v{font-size:25px}
+.topgrid .ebq-brg{flex-wrap:nowrap;gap:7px}
+.topgrid .ebq-b{flex:1 1 0;min-width:0;padding:9px 11px}
+.topgrid .ebq-bv{font-size:21px}
+.topgrid .ebq-bop{padding:4px 8px;font-size:10.5px}
+.topgrid .ebq-chain{flex-wrap:nowrap;gap:6px}
+.topgrid .ebq-step{flex:1 1 0;min-width:0;padding:8px 7px}
+.topgrid .ebq-step b{font-size:16px}
+.topgrid .ebq-step span{font-size:9px}
+.topgrid .ebq-op{font-size:10.5px}
+.topgrid .ebq-punch,.topgrid .cons5-note{font-size:11.6px}
+@media(max-width:620px){.topgrid .ebq-brg,.topgrid .ebq-chain{flex-wrap:wrap}.topgrid .ebq-b,.topgrid .ebq-step{flex:1 1 100%}}
+/* mesma margem das demais abas */
+#p-mon{max-width:1180px;margin:0 auto;padding:22px 18px 60px}
+/* resumo final do trilho */
+.tri-res{border:1px solid var(--gol2);border-radius:13px;background:linear-gradient(135deg,rgba(31,78,148,.11),rgba(31,78,148,.02));padding:16px 18px;margin:14px 0 10px}
+.tri-rh{font-size:14px;font-weight:900;color:var(--gol);margin-bottom:12px;letter-spacing:.01em}
+.tri-rrow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.tri-rrow{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.tri-rrow{grid-template-columns:1fr}}
+.tri-rc{background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:12px 14px}
+.tri-rc.tri-rhi{border-color:var(--gol2);background:rgba(31,78,148,.08)}
+.tri-rv{font-size:30px;font-weight:900;color:var(--gol2);line-height:1.08;letter-spacing:-.01em}
+.tri-rc.tri-rhi .tri-rv{color:var(--gol)}
+.tri-rl{font-size:12px;font-weight:800;color:var(--tx);margin-top:5px}
+.tri-rs{font-size:10.5px;color:var(--mu);margin-top:3px;line-height:1.45}
+.tri-rs b{color:var(--tx);font-weight:800}
+.tri-rpunch{margin-top:13px;padding:12px 16px;background:rgba(31,78,148,.09);border-left:4px solid var(--gol2);border-radius:6px;font-size:13.5px;color:var(--tx);line-height:1.62}
+.tri-rpunch b{color:var(--gol);font-weight:900}
+/* cadeia da equivalencia, em destaque */
+.ebq-eq{margin-top:12px;border:1px solid var(--gol2);border-radius:11px;background:var(--s1);padding:12px 14px}
+.ebq-eqh{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--gol2);text-align:center;margin-bottom:10px}
+.ebq-op i{display:block;font-style:normal;font-size:8.5px;font-weight:700;color:var(--mu2);text-transform:uppercase;letter-spacing:.03em;margin-top:2px}
+.ebq-step.ebq-big{border-color:var(--gol2);background:rgba(31,78,148,.07)}
+.topgrid .ebq-eq .ebq-chain{gap:5px}
+.topgrid .ebq-eq .ebq-step{padding:10px 6px}
+.topgrid .ebq-eq .ebq-step b{font-size:21px;letter-spacing:-.01em}
+.topgrid .ebq-eq .ebq-step.ebq-big b,.topgrid .ebq-eq .ebq-step.ebq-end b{font-size:25px}
+.topgrid .ebq-eq .ebq-step span{font-size:9.5px;line-height:1.35;margin-top:3px}
+.topgrid .ebq-eq .ebq-op{font-size:11px}
+.ebq-eq .ebq-step b{font-size:24px}
+.ebq-eq .ebq-step.ebq-big b,.ebq-eq .ebq-step.ebq-end b{font-size:29px}
+.ebq-eq .ebq-step{display:flex;flex-direction:column;justify-content:center}
+.ebq-eq .ebq-step b{white-space:nowrap}
+.topgrid .ebq-eq{padding:11px 10px}
+.topgrid .ebq-eq .ebq-step{padding:9px 4px}
+.topgrid .ebq-eq .ebq-step b{font-size:19px}
+.topgrid .ebq-eq .ebq-step.ebq-big b,.topgrid .ebq-eq .ebq-step.ebq-end b{font-size:23px}
+.topgrid .ebq-eq .ebq-op{font-size:10px}
+.topgrid .ebq-punch{padding:10px 13px;line-height:1.55}
+/* dourado TAT no quadro da equivalencia comercial */
+.ebq{border-color:var(--gold);background:linear-gradient(135deg,rgba(227,176,74,.13),rgba(227,176,74,.02))}
+.ebq:hover{border-color:var(--gold2)}
+.ebq-h{color:var(--gold)}
+.ebq-b.ebq-bhi{border-color:var(--gold);background:rgba(227,176,74,.10)}
+.ebq-b.ebq-bhi .ebq-bt{color:var(--gold)}
+.ebq-b.ebq-bhi .ebq-bv{color:var(--gold)}
+.ebq-bop{border-color:var(--gold);color:var(--gold)}
+.ebq-eq{border-color:var(--gold)}
+.ebq-eqh{color:var(--gold)}
+.ebq-eq .ebq-step:first-child{border-color:var(--gold);background:rgba(227,176,74,.08)}
+.ebq-eq .ebq-step:first-child b{color:var(--gold)}
+.ebq-punch{border-left-color:var(--gold);background:rgba(227,176,74,.10)}
+.ebq-punch b{color:var(--gold)}
+/* projecao: declarada apagada, medida em destaque */
+.pj-c{background:var(--s1);opacity:.9}
+.pj-c .pj-t{color:var(--mu2)}
+.pj-c .pj-v{font-size:25px;color:var(--mu);font-weight:800}
+.pj-c .pj-s{color:var(--mu2)}
+.pj-c.real{opacity:1;border:1px solid var(--gol2);border-left:4px solid var(--gol2);background:rgba(31,78,148,.07)}
+.pj-c.real .pj-t{color:var(--gol2)}
+.pj-c.real .pj-v{font-size:44px;color:var(--gol);font-weight:900;letter-spacing:-.02em}
+.pj-c.real .pj-s{color:var(--tx)}
+@media(max-width:720px){.pj-c.real .pj-v{font-size:34px}}
+/* sub-metricas dentro dos cards do consolidado */
+.c5sub{display:flex;gap:10px;margin-top:11px;padding-top:10px;border-top:1px solid var(--b)}
+.c5s{flex:1 1 0;min-width:0}
+.c5s b{display:block;font-size:17px;font-weight:900;color:var(--gol2);line-height:1.15;white-space:nowrap}
+.c5s b.gr{color:var(--gr)}
+.cons5-c.wl .c5s b{color:var(--gold)}
+.cons5-c.wl .c5s b.gr{color:var(--gr)}
+.c5s span{display:block;font-size:9.5px;color:var(--mu);margin-top:1px;line-height:1.35}
+.c5tag{margin-top:9px;font-size:9.8px;font-weight:700;line-height:1.45;padding:6px 9px;border-radius:6px}
+.c5tag.no{background:rgba(73,100,134,.10);border:1px solid var(--b);color:var(--mu)}
+.c5tag.yes{background:rgba(14,154,103,.10);border:1px solid rgba(14,154,103,.35);color:var(--gr)}
+.topgrid .cons5-row{grid-template-columns:1fr 1fr}
+/* consolidado preenche a altura do quadro */
+.topgrid>.cons5{display:flex;flex-direction:column}
+.topgrid>.cons5>.cons5-row{flex:1 1 auto;align-items:stretch}
+.topgrid>.cons5>.cons5-note{margin-top:12px}
+.topgrid .cons5-c{display:flex;flex-direction:column}
+.topgrid .cons5-c .c5sub{margin-top:auto}
+.topgrid .cons5-c .c5tag{margin-top:9px}
+.topgrid>.ebq{display:flex;flex-direction:column}
+.topgrid>.ebq>.ebq-punch{margin-top:auto}
+/* layout interno dos cards do consolidado */
+.topgrid .cons5-c{display:flex;flex-direction:column;justify-content:flex-start}
+.topgrid .cons5-c .c5sub{margin-top:12px}
+.topgrid .cons5-c .c5tag{margin-top:9px}
+.c5foot{margin-top:auto;padding-top:10px;font-size:10.5px;color:var(--mu);line-height:1.5}
+.c5foot b{color:var(--tx);font-weight:800}
+.cons5-c.wl .c5foot b{color:var(--gold)}
+.c5go{margin-top:7px;font-size:10.5px;font-weight:800;color:var(--gold)}
+.cons5.clk:hover .c5go{text-decoration:underline}
+.c5foot{margin-top:11px;padding-top:0}
+.topgrid .cons5-c{justify-content:flex-start}
+/* QAV e CO2 lado a lado dentro de cada painel */
+:root{--eprows:5}
+.erow2{display:grid;grid-template-columns:1fr 1fr;gap:0;border-bottom:1px solid var(--b)}
+@media(max-width:640px){.erow2{grid-template-columns:1fr}}
+.erow2>.erow{border-bottom:0;border-right:1px solid var(--b);display:flex;flex-direction:column;height:100%}
+.erow2>.erow:last-child{border-right:0}
+.erow2>.erow .corsia{margin-top:auto}
+.epgrid{grid-template-rows:repeat(var(--eprows),auto)!important}
+.epgrid>.epanel{grid-row:span var(--eprows)!important}
+.tatgo{display:block;margin-top:7px;font-size:11px;font-weight:800;color:var(--gr)}
+.ehnote.tat b{color:var(--tx)}
+/* 2T26: titulo maior e sem aparencia de link */
+.ebq{cursor:default!important}
+.ebq:hover{border-color:var(--gold);box-shadow:none;transform:none}
+.ebq-h{font-size:15.5px;line-height:1.35}
+.ebq-h>span{font-size:11px}
+/* card do dado publicado pela Azul, em azul */
+.ebq-b.ebq-baz{border-color:var(--gol2);background:rgba(31,78,148,.06)}
+.ebq-b.ebq-baz .ebq-bt{color:var(--gol2)}
+.ebq-b.ebq-baz .ebq-bv{color:var(--gol)}
+.ebq-bop.ebq-bop2{border-color:var(--gol2);color:var(--gol2)}
+.ebq.solo .ebq-brg{gap:8px}
+.ebq.solo .ebq-b{flex:1 1 0;min-width:0}
+.ebq.solo .ebq-bv{font-size:25px}
+.ebq.solo .ebq-bs{font-size:10.2px}
+@media(max-width:1100px){.ebq.solo .ebq-brg{flex-wrap:wrap}.ebq.solo .ebq-b{flex:1 1 260px}}
+/* projecao: comparativo e resultado lado a lado */
+.pjgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:stretch;margin-bottom:12px}
+@media(max-width:1000px){.pjgrid{grid-template-columns:1fr}}
+.pjcol{display:flex;flex-direction:column}
+.pjgrid .pj-cmp{grid-template-columns:1fr;gap:10px;margin:10px 0 0}
+.pjgrid .pj-c{flex:1 1 auto}
+.pjgrid .hero2{flex-direction:column;margin-top:10px;flex:1 1 auto}
+.pjgrid .h2sep{width:auto;height:1px}
+.pjgrid .pjbanner{margin-top:auto}
+.pjcol>.sec,.pjcol>.reswl{margin-top:0}
+/* colunas da projecao preenchem a mesma altura */
+.pjgrid .pj-cmp{grid-template-rows:1fr 1fr;flex:1 1 auto}
+.pjgrid .pj-c{display:flex;flex-direction:column;justify-content:center}
+/* nota das duas bases de voo */
+.basenote{background:var(--s1);border:1px solid var(--b);border-left:3px solid var(--gold);border-radius:10px;padding:12px 16px;margin:14px 0 2px;font-size:12.5px;line-height:1.65;color:var(--tx)}
+.basenote b{color:var(--tx)}
+.basenote .bn-t{display:block;font-size:12.5px;font-weight:800;color:var(--gold);margin-bottom:4px}
+.basenote .bn-p{display:inline-block;background:var(--s2);border:1px solid var(--b);border-radius:6px;padding:1px 7px;font-weight:800;font-size:11.5px;margin:0 1px}
+/* disclaimer compacto */
+.basenote{font-size:11.2px;line-height:1.55;padding:9px 13px;margin:12px 0 2px;color:var(--mu)}
+.basenote b{color:var(--tx);font-weight:800}
+/* ponte do 2T26: quebra sem espremer os cards */
+.ebq.solo .ebq-brg{flex-wrap:wrap!important;gap:10px;align-items:stretch}
+.ebq.solo .ebq-b{flex:1 1 265px!important;min-width:265px}
+.ebq.solo .ebq-bop{flex:0 0 auto;align-self:center}
+@media(max-width:900px){.ebq.solo .ebq-b{flex:1 1 100%!important;min-width:0}.ebq.solo .ebq-bop{flex:1 1 100%;text-align:center}}
+.ebq.solo .ebq-eq .ebq-chain{flex-wrap:wrap}
+.ebq.solo .ebq-eq .ebq-step{flex:1 1 190px;min-width:150px}
+@media(max-width:760px){.ebq.solo .ebq-eq .ebq-step{flex:1 1 100%}.ebq.solo .ebq-eq .ebq-op{flex:1 1 100%;text-align:center}}
+@media(max-width:1160px){.ebq.solo .ebq-b{flex:1 1 200px!important;min-width:200px}.ebq.solo .ebq-bop{flex:0 0 auto;text-align:center;padding:4px 9px;font-size:10.5px}.ebq.solo .ebq-bv{font-size:22px}.ebq.solo .ebq-bt{font-size:9px}.ebq.solo .ebq-bs{font-size:9.8px;line-height:1.45}}@media(max-width:860px){.ebq.solo .ebq-b{flex:1 1 100%!important;min-width:0}.ebq.solo .ebq-bop{flex:1 1 100%;text-align:center;font-size:12px}.ebq.solo .ebq-bv{font-size:25px}.ebq.solo .ebq-bs{font-size:10.2px}}
+/* tabelas largas rolam em tela pequena */
+@media(max-width:820px){#p-dash table{display:block;overflow-x:auto;white-space:nowrap;max-width:100%}#p-dash .mon-tb,#p-dash .tri-card table{white-space:normal}}
+
+
+/* bloco da medicao no dashboard */
+.medblk{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;background:var(--s1);border:1px solid var(--gol2);border-radius:13px;padding:16px 20px;margin:10px 0 6px;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.medblk:hover{border-color:var(--gol);box-shadow:0 6px 20px rgba(31,78,148,.13)}
+@media(max-width:820px){.medblk{grid-template-columns:1fr}}
+.medt{font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--mu2)}
+.medt.hi{color:var(--gol2)}
+.medv{font-size:38px;font-weight:900;color:var(--gol);line-height:1.06;letter-spacing:-.02em;margin:2px 0}
+.medv.gray{font-size:27px;color:var(--mu);font-weight:800}
+.meds{font-size:11.5px;color:var(--mu);line-height:1.5}
+.meds b{color:var(--tx);font-weight:800}
+.medar{font-size:22px;font-weight:900;color:var(--mu2)}
+@media(max-width:820px){.medar{transform:rotate(90deg);text-align:center}}
+.medk{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:4px;padding-top:13px;border-top:1px solid var(--b)}
+@media(max-width:620px){.medk{grid-template-columns:repeat(2,1fr)}}
+.medki{text-align:center}
+.medki b{display:block;font-size:21px;font-weight:900;color:var(--gol2);line-height:1.15}
+.medki.hi b{color:var(--gol)}
+.medki span{display:block;font-size:10px;color:var(--mu);margin-top:1px}
+.medgo{grid-column:1/-1;margin-top:2px;padding:10px 14px;background:rgba(31,78,148,.09);border-left:4px solid var(--gol2);border-radius:6px;font-size:13px;color:var(--tx);line-height:1.55}
+.medgo b{color:var(--gol);font-weight:900}
+.medgo span{font-weight:800;color:var(--gol2);white-space:nowrap}
+/* topo: 2T26 sozinho, largura total */
+.ebq.solo{margin:18px 0 6px}
+.ebq.solo .ebq-brg{flex-wrap:nowrap}
+.ebq.solo .ebq-b{padding:13px 16px}
+.ebq.solo .ebq-bv{font-size:27px}
+.ebq.solo .ebq-eq .ebq-step b{font-size:26px}
+.ebq.solo .ebq-eq .ebq-step.ebq-big b,.ebq.solo .ebq-eq .ebq-step.ebq-end b{font-size:32px}
+.ebq.solo .ebq-eq .ebq-step span{font-size:11px}
+.ebq.solo .ebq-op{font-size:12.5px}
+.ebq.solo .ebq-punch{font-size:13.5px}
+/* consolidado sozinho no fim */
+.cons5.solo{margin:18px 0 6px}
+.cons5.solo .cons5-row{grid-template-columns:1fr 1fr}
+
+@media(min-width:861px){.projgrid .pgq table{width:100%;table-layout:fixed}.projgrid .pgq th,.projgrid .pgq td{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.projgrid .pgq thead th{height:44px;vertical-align:middle;padding-top:4px;padding-bottom:4px;line-height:1.2}.projgrid .pgq tbody td,.projgrid .pgq tfoot td{height:32px;padding-top:3px;padding-bottom:3px;line-height:1.25}.projgrid .pgq.wl th,.projgrid .pgq.wl td{font-size:10.5px;padding-left:4px;padding-right:4px}.projgrid .pgq.gol th,.projgrid .pgq.gol td{font-size:11px}.projgrid .pgq.wl th:first-child,.projgrid .pgq.wl td:first-child{width:21%}.projgrid .pgq.wl th:nth-child(2),.projgrid .pgq.wl td:nth-child(2){width:12%}.projgrid .pgq.gol th:first-child,.projgrid .pgq.gol td:first-child{width:25%}.projgrid .pgq .pmo{white-space:nowrap}}.scrollx{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--b);border-radius:10px;background:var(--s1);max-width:100%}.scrollx>table{margin:0!important;border:0!important;border-radius:0!important;background:transparent!important;min-width:660px;width:100%}@media(max-width:820px){#p-dash .scrollx>table{display:table!important;white-space:nowrap;max-width:none!important;overflow:visible!important}#p-dash .scrollx{padding-right:1px}}@media print{.navbar,.detailrow,.toggle,.hpill.exp{display:none!important}.panel{display:block!important}}
+
+/* === COMO OPERAMOS === */
+.op-intro{background:var(--s1);border:1px solid var(--b);border-left:3px solid var(--gol);border-radius:10px;padding:14px 18px;margin:12px 0;font-size:13.5px;line-height:1.6;color:var(--tx)}
+.op-intro b{color:var(--tx)}
+.op-sec{font-size:14px;font-weight:800;color:var(--gol2);margin:26px 0 12px;padding-bottom:8px;border-bottom:1px solid var(--b);text-transform:uppercase;letter-spacing:.03em}
+.op-phase{font-size:15px;font-weight:800;color:#fff;background:linear-gradient(135deg,var(--gol),var(--acc2));border-radius:10px;padding:12px 18px;margin:22px 0 12px}
+.op-tl{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.op-tstep{flex:1;min-width:150px;background:var(--s1);border:1px solid var(--b);border-top:3px solid var(--gol);border-radius:10px;padding:12px 14px}
+.op-tstep.done{border-top-color:var(--gr)}
+.op-tk{font-size:11px;font-weight:800;color:var(--gol2);text-transform:uppercase}
+.op-tstep.done .op-tk{color:var(--gr)}
+.op-tt{font-size:13px;font-weight:700;color:var(--tx);margin:5px 0}
+.op-td{font-size:11.5px;color:var(--mu);line-height:1.5}
+.op-ws{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin:12px 0}
+.op-wscard{background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:14px 16px}
+.op-wsbadge{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--gol),var(--acc2));color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;margin-bottom:9px}
+.op-wst{font-size:13px;font-weight:700;color:var(--tx);margin-bottom:6px}
+.op-wsd{font-size:11.5px;color:var(--mu);line-height:1.55}.op-wsd b{color:var(--tx)}
+.op-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:12px 0}
+@media(max-width:720px){.op-2col{grid-template-columns:1fr}.op-phones{grid-template-columns:1fr!important}}
+.op-box{background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:14px 16px}
+.op-box h4{font-size:13px;font-weight:800;margin:0 0 10px;color:var(--gol2)}
+.op-box.gol h4{color:var(--gold)}
+.op-di{display:flex;gap:9px;padding:7px 0;border-top:1px solid var(--b);font-size:12px}
+.op-di:first-of-type{border-top:none}
+.op-din{width:20px;height:20px;border-radius:5px;background:var(--s2);color:var(--gol2);font-weight:800;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.op-box.gol .op-din{color:var(--gold)}
+.op-dit{color:var(--mu);line-height:1.45}.op-dit b{color:#fff}
+.op-din.done{background:rgba(32,232,152,.15);color:var(--gr)}
+.op-donetag{display:inline-block;font-size:9.5px;font-weight:800;color:var(--gr);background:rgba(32,232,152,.12);border:1px solid rgba(32,232,152,.35);border-radius:5px;padding:1px 6px;margin-left:5px;text-transform:uppercase;letter-spacing:.03em}
+.op-table{width:100%;border-collapse:collapse;font-size:12.5px;margin:10px 0}
+.op-table th{text-align:left;padding:9px 12px;background:var(--s2);color:var(--mu);font-size:11px;text-transform:uppercase}
+.op-table td{padding:9px 12px;border-top:1px solid var(--b);color:var(--tx)}
+.op-table .c{text-align:center}
+.op-table tr:last-child td{background:var(--s2);font-weight:700}
+.op-phones{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:14px 0}
+.op-phone{background:#0e2740;border:2px solid var(--b);border-radius:22px;padding:14px 13px}
+.op-pnotch{width:40px;height:4px;background:var(--gol);border-radius:3px;margin:0 auto 12px}
+.op-phead{display:flex;align-items:center;gap:9px;margin-bottom:12px}
+.op-picon{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--gol),var(--acc2));color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.op-pt{font-size:12px;font-weight:800;color:var(--tx)}.op-ps{font-size:9.5px;color:var(--mu)}
+.op-plabel{font-size:9.5px;color:var(--mu);text-transform:uppercase;letter-spacing:.04em;margin:8px 0 4px}
+.op-prow{background:var(--s2);border:1px solid var(--b);border-radius:8px;padding:9px 11px;margin:5px 0;display:flex;justify-content:space-between;align-items:center;font-size:11.5px;color:var(--tx)}
+.op-prow.sel{border-color:var(--gol)}
+.op-prow .lit{color:var(--gol2);font-weight:800;font-family:'SF Mono',monospace}
+.op-pbig{background:rgba(0,154,68,.08);border:1px solid var(--gol);border-radius:10px;padding:13px;text-align:center;margin:7px 0}
+.op-pbig .n{font-size:25px;font-weight:800;color:var(--gol2)}.op-pbig .l{font-size:9.5px;color:var(--mu);text-transform:uppercase}
+.op-pbtn{background:linear-gradient(135deg,var(--gol),var(--acc2));color:#fff;text-align:center;font-weight:800;padding:11px;border-radius:9px;font-size:12px;margin-top:8px}
+.op-pok{background:rgba(32,232,152,.1);border:1px solid rgba(32,232,152,.4);color:var(--gr);border-radius:8px;padding:8px;text-align:center;font-size:11px;font-weight:700;margin:6px 0}
+.op-pwarn{background:rgba(255,176,32,.08);border:1px solid rgba(255,176,32,.4);color:var(--go);border-radius:8px;padding:8px;text-align:center;font-size:10.5px;font-weight:600;margin:6px 0}
+.op-note{font-size:11.5px;color:var(--mu2);font-style:italic;margin:8px 0;line-height:1.5}
+
+/* === CARD TAT PREMIUM DOURADO === */
+.epanel.tat .ehv{background:linear-gradient(135deg,#b8862e,#8a5e10,#a9791f,#6e4c0c);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;filter:drop-shadow(0 1px 2px rgba(138,94,16,.25))}
+.epanel.tat .eph{background:linear-gradient(135deg,rgba(227,176,74,.10),transparent)}
+.epbadge.tat{box-shadow:0 2px 12px rgba(227,176,74,.45)}
+.epbadge.epbadge-logo{background:#fff!important;width:auto;flex:0 0 auto;padding:5px 10px;box-shadow:0 2px 12px rgba(15,42,120,.25)}
+.epbadge.epbadge-logo img{width:auto;height:32px;object-fit:contain}
+.epanel.tat .erv.tat{text-shadow:0 0 12px rgba(227,176,74,.3)}
+
+/* === ROTATION CHART (GANTT) === */
+.gaxis{position:relative;height:16px;margin:0 0 6px 50px;border-bottom:1px solid var(--b)}
+.gtick{position:absolute;font-size:9px;color:var(--mu2);transform:translateX(-50%);top:0;white-space:nowrap}
+.gtick::after{content:'';position:absolute;top:14px;left:50%;width:1px;height:5px;background:var(--b)}
+.gbody{max-height:640px;overflow-y:auto}
+.grow{display:flex;align-items:center;height:20px;margin:1.5px 0}
+.gtrack{position:relative;flex:1;height:16px;background:var(--s1);border-radius:4px;margin-left:6px;border:1px solid var(--b)}
+.gbar{position:absolute;top:0;height:100%;border-radius:3px;overflow:hidden;background:#0e2740;border:1px solid rgba(0,0,0,.35);z-index:1}
+.glvl{position:absolute;bottom:0;left:0;width:100%}
+.grf{position:absolute;top:0;left:0;width:2px;height:100%;background:var(--gold);z-index:2}
+.gmoon{position:absolute;top:0;font-size:10px;transform:translateX(-50%);z-index:3;opacity:.85}
+
+
+/* === ORGANOGRAMA + APP (modelo v12, paleta atual) === */
+#p-oper .orgwrap{display:flex;flex-direction:column;align-items:center;gap:0}
+#p-oper .orgtop{background:var(--s1);border:1px solid var(--acc);border-radius:11px;padding:14px 22px;text-align:center;min-width:220px}
+#p-oper .orgtop .ot-role{font-size:13px;font-weight:800;color:var(--acc)}
+#p-oper .orgtop .ot-sub{font-size:10.5px;color:var(--mu);margin-top:3px}
+#p-oper .orgline{width:2px;height:20px;background:var(--b)}
+#p-oper .phonerow{display:flex;gap:18px;flex-wrap:wrap;justify-content:center;padding:6px 0}
+#p-oper .phone{width:212px;background:#060f1a;border:9px solid #12233a;border-radius:30px;overflow:hidden;box-shadow:0 10px 34px rgba(0,0,0,.55);flex:none}
+#p-oper .phone-notch{height:20px;background:#050d16;display:flex;align-items:center;justify-content:center}
+#p-oper .phone-notch i{width:52px;height:5px;background:#1a3c60;border-radius:3px;display:block}
+#p-oper .phone-scr{padding:12px;min-height:404px;display:flex;flex-direction:column;gap:9px;background:linear-gradient(180deg,#0a2b18,#060f1a)}
+#p-oper .ap-top{display:flex;align-items:center;gap:8px;padding-bottom:9px;border-bottom:1px solid var(--b)}
+#p-oper .ap-logo{width:26px;height:26px;border-radius:7px;background:linear-gradient(135deg,var(--acc),var(--acc2));display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:12px}
+#p-oper .ap-ttl{font-size:11px;font-weight:800;color:var(--tx)}
+#p-oper .ap-ttl small{display:block;font-size:8px;color:var(--mu);font-weight:400}
+#p-oper .ap-lbl{font-size:8.5px;color:var(--mu);text-transform:uppercase;letter-spacing:.4px;margin-top:4px}
+#p-oper .ap-fld{background:var(--s2);border:1px solid var(--b);border-radius:7px;padding:8px 10px;font-size:11px;color:var(--tx);font-weight:600;display:flex;justify-content:space-between;align-items:center;gap:6px}
+#p-oper .ap-fld b{color:var(--acc);font-family:'SF Mono',ui-monospace,monospace;text-align:right}
+#p-oper .ap-meta{background:rgba(0,180,230,.08);border:1px solid var(--acc);border-radius:8px;padding:10px;text-align:center}
+#p-oper .ap-meta .m-v{font-size:24px;font-weight:800;color:var(--acc);line-height:1}
+#p-oper .ap-meta .m-l{font-size:8.5px;color:var(--mu);text-transform:uppercase;margin-top:2px}
+#p-oper .ap-ok{background:rgba(24,186,122,.12);border:1px solid var(--gr);border-radius:8px;padding:9px;text-align:center;font-size:11px;font-weight:700;color:#20e898}
+#p-oper .ap-warn{background:rgba(229,185,60,.1);border:1px solid var(--go);border-radius:8px;padding:9px;text-align:center;font-size:11px;font-weight:700;color:#ffa040}
+#p-oper .ap-btn{background:linear-gradient(135deg,var(--acc),var(--acc2));color:#fff;border-radius:8px;padding:10px;text-align:center;font-size:11px;font-weight:800;margin-top:auto}
+#p-oper .phone-cap{text-align:center;font-size:10.5px;color:var(--mu);margin-top:8px;font-weight:600}
+#p-oper .osub{font-size:10.5px;color:var(--mu);line-height:1.6}
+
+/* === VALIDADOR (modelo v12, paleta atual) === */
+#p-valid #pp-val-print .vmtx{font-size:6.2pt}
+#p-valid #pp-val-print .vmtx th,#p-valid #pp-val-print .vmtx td{padding:2px 3px}
+#p-valid #pp-val-print .vcard,#p-valid #pp-val-print .vzone3,#p-valid #pp-val-print .vopp2,#p-valid #pp-val-print .vbands4{page-break-inside:avoid}
+#p-valid .nb-banner{background:linear-gradient(135deg,#0a1420,#12233a);border:1px solid var(--b);border-radius:10px;padding:12px 18px;margin-bottom:16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+#p-valid .nbb-lbl{font-size:11px;font-weight:800;color:#ffa040;text-transform:uppercase;letter-spacing:.06em}
+#p-valid .nbb-fleets{font-size:12px;font-weight:700;color:#e8f2fb}
+#p-valid .nbb-note{font-size:10px;color:var(--mu);margin-left:auto}
+#p-valid .vzone3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:16px}
+#p-valid .vzc{border-radius:12px;padding:16px 18px;border:1px solid var(--b)}
+#p-valid .vzc.blue{background:rgba(37,144,212,.10);border-color:rgba(37,144,212,.35)}
+#p-valid .vzc.amber{background:rgba(232,128,26,.12);border-color:rgba(232,128,26,.4)}
+#p-valid .vzc.green{background:rgba(37,168,98,.10);border-color:rgba(37,168,98,.35)}
+#p-valid .vzt{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:8px}
+#p-valid .vzc.blue .vzt{color:#5cb3ec}
+#p-valid .vzc.amber .vzt{color:#ffa94d}
+#p-valid .vzc.green .vzt{color:#3fd18a}
+#p-valid .vzv{font-size:30px;font-weight:800;color:var(--tx);line-height:1}
+#p-valid .vzp{font-size:12px;color:var(--mu);margin:4px 0 10px}
+#p-valid .vzd{font-size:11px;color:var(--tx);line-height:1.5;opacity:.85}
+#p-valid .vzd b{color:var(--tx);opacity:1}
+#p-valid .vcard{background:var(--s1);border-radius:12px;border:1px solid var(--b);margin-bottom:16px;overflow:hidden}
+#p-valid .vch{padding:14px 20px;border-bottom:1px solid var(--b);font-size:12px;font-weight:800;color:var(--tx);text-transform:uppercase;letter-spacing:.04em}
+#p-valid .vch-plain{font-size:12px;font-weight:800;color:var(--tx);text-transform:uppercase;letter-spacing:.04em;margin:0 4px 10px}
+#p-valid .vcb{padding:16px 20px}
+#p-valid .veqr{display:grid;grid-template-columns:190px 1fr 54px auto;gap:12px;align-items:center;padding:5px 0;font-size:12px}
+#p-valid .veqr.crit{background:rgba(232,80,10,.10);border-radius:6px;padding:6px 8px;margin:2px -8px}
+#p-valid .veql{color:var(--tx);font-weight:600}
+#p-valid .veqbar{height:8px;background:var(--s2);border-radius:4px;overflow:hidden}
+#p-valid .veqbar i{display:block;height:100%;background:linear-gradient(90deg,#2590d4,#ffa040,#25a862);border-radius:4px}
+#p-valid .veqv{font-weight:800;color:var(--tx);text-align:right}
+#p-valid .veqv.crit{color:#ff7a3c}
+#p-valid .veqn{font-size:10px;color:var(--mu)}
+#p-valid .vnote,#p-valid .vnote2{font-size:10px;color:var(--mu);margin-top:10px;line-height:1.5}
+#p-valid .vnote2 b{color:var(--tx)}
+#p-valid .vopp2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+#p-valid .voppc{border-radius:12px;padding:16px 18px;border:1px solid var(--b)}
+#p-valid .voppc.blue{background:rgba(37,144,212,.10);border-color:rgba(37,144,212,.35)}
+#p-valid .voppc.red{background:rgba(181,41,28,.12);border-color:rgba(181,41,28,.4)}
+#p-valid .vot{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+#p-valid .voppc.blue .vot{color:#5cb3ec}
+#p-valid .voppc.red .vot{color:#ff6b5c}
+#p-valid .vov{font-size:26px;font-weight:800;color:var(--tx)}
+#p-valid .voppc.red .vov{color:#ff6b5c}
+#p-valid .vod{font-size:11px;color:var(--tx);line-height:1.55;margin-top:6px;opacity:.85}
+#p-valid .vod b{color:var(--tx);opacity:1}
+#p-valid .vhtp{font-size:12px;color:var(--tx);line-height:1.6;margin-bottom:14px}
+#p-valid .vhtp b{color:var(--tx)}
+#p-valid .vht-axes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px}
+#p-valid .vht-ax{border-radius:8px;padding:14px 16px;border:1px solid var(--b);background:var(--s2)}
+#p-valid .vht-t{font-size:12px;font-weight:800;color:var(--tx);margin-bottom:4px}
+#p-valid .vht-d{font-size:11.5px;color:var(--mu);line-height:1.5}
+#p-valid .vht-a{font-size:11px;color:#5cb3ec;font-weight:700;margin-top:6px}
+#p-valid .vht-colors{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:16px}
+#p-valid .vht-c{border-radius:8px;padding:12px 14px;text-align:center}
+#p-valid .vht-c.blue{background:rgba(37,144,212,.12);border:1px solid rgba(37,144,212,.3)}
+#p-valid .vht-c.amber{background:rgba(232,128,26,.14);border:1px solid rgba(232,128,26,.35)}
+#p-valid .vht-c.green{background:rgba(37,168,98,.12);border:1px solid rgba(37,168,98,.3)}
+#p-valid .vhtc-p{font-size:16px;font-weight:800}
+#p-valid .vht-c.blue .vhtc-p{color:#5cb3ec}
+#p-valid .vht-c.amber .vhtc-p{color:#ffa94d}
+#p-valid .vht-c.green .vhtc-p{color:#3fd18a}
+#p-valid .vhtc-d{font-size:10.5px;color:var(--tx);margin-top:3px;line-height:1.4;opacity:.85}
+#p-valid .vhtc-d b{opacity:1}
+#p-valid .vht-ex{background:rgba(37,144,212,.08);border:1px solid rgba(37,144,212,.25);border-radius:8px;padding:14px 16px}
+#p-valid .vhte-t{font-size:12px;font-weight:800;color:var(--tx);margin-bottom:8px}
+#p-valid .vht-steps{display:flex;flex-direction:column;gap:5px}
+#p-valid .vht-step{display:flex;gap:10px;align-items:baseline;font-size:11.5px;color:var(--tx);line-height:1.45;opacity:.9}
+#p-valid .vhn{width:18px;height:18px;border-radius:50%;background:#2590d4;color:#fff;font-size:10px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+#p-valid .vht-step b{color:var(--tx);opacity:1}
+#p-valid .vht-verdict{margin-top:10px;padding:8px 12px;background:rgba(37,144,212,.14);border-radius:6px;font-size:12px;font-weight:800;color:#5cb3ec;text-align:center}
+#p-valid .vmtbl-wrap{overflow-x:auto}
+#p-valid .vmtx{width:100%;border-collapse:collapse;font-size:11.5px}
+#p-valid .vmtx thead th{background:#0a1420;color:#fff;padding:9px 7px;font-size:9.5px;text-transform:uppercase;letter-spacing:.03em;white-space:nowrap;text-align:right;position:sticky;top:0}
+#p-valid .vmtx thead th:first-child,#p-valid .vmtx thead th:nth-child(2){text-align:left}
+#p-valid .vmb{font-weight:800;color:var(--tx);padding:8px}
+#p-valid .vmcr{color:var(--mu);font-size:10px;padding:8px}
+#p-valid .vmc{padding:7px 8px;text-align:right;font-weight:700;white-space:nowrap;border-bottom:1px solid rgba(255,255,255,.05)}
+#p-valid .vmc.blue{background:rgba(37,144,212,.22);color:#7cc4f5}
+#p-valid .vmc.amber{background:rgba(232,128,26,.24);color:#ffa94d}
+#p-valid .vmc.green{background:rgba(37,168,98,.24);color:#4fe39a}
+#p-valid .vlegend{display:flex;gap:18px;flex-wrap:wrap;font-size:11px;color:var(--mu);padding:12px 20px;border-top:1px solid var(--b)}
+#p-valid .vlegend span{display:flex;align-items:center;gap:6px}
+#p-valid .vlg{width:12px;height:12px;border-radius:3px;display:inline-block}
+#p-valid .vlg.blue{background:#2590d4}
+#p-valid .vlg.amber{background:#e8801a}
+#p-valid .vlg.green{background:#25a862}
+#p-valid .tb{color:#5cb3ec}
+#p-valid .ta{color:#ffa94d}
+#p-valid .tg{color:#3fd18a}
+#p-valid .vbands4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px}
+#p-valid .vbandc{background:var(--s1);border-radius:12px;border:1px solid var(--b);padding:14px 16px}
+#p-valid .vbandh{font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.03em;color:var(--tx);margin-bottom:8px}
+#p-valid .vbandv{font-size:20px;font-weight:800;color:var(--tx)}
+#p-valid .vbands{font-size:11px;color:var(--mu);margin:2px 0 8px}
+#p-valid .vbandtags{display:flex;gap:6px}
+#p-valid .vbt{font-size:10px;font-weight:700;padding:2px 8px;border-radius:12px}
+#p-valid .vbt.blue{background:rgba(37,144,212,.15);color:#5cb3ec}
+#p-valid .vbt.green{background:rgba(37,168,98,.15);color:#3fd18a}
+#p-valid .vexec{background:rgba(37,144,212,.06);border:1px solid rgba(37,144,212,.2);border-radius:12px;padding:18px 20px;font-size:12.5px;line-height:1.7;color:var(--tx);opacity:.92}
+#p-valid .vexec b{color:var(--tx)}
+#p-valid .vexec p{margin-bottom:10px}
+#p-valid .vexec p:last-child{margin-bottom:0}
+#p-valid .vzone3,#p-valid .vopp2,#p-valid .vht-axes,#p-valid .vht-colors,#p-valid .vbands4{grid-template-columns:1fr}
+#p-valid .veqr{grid-template-columns:130px 1fr 48px;font-size:11px}
+#p-valid .veqn{display:none}
+#p-valid .nbb-note{margin-left:0;width:100%}
+
+/* frota premissas Azul */
+
+#p-prem .fcard{background:var(--s2);border:1px solid var(--b);border-radius:8px;padding:8px 10px}
+#p-prem .fcn{font-size:11px;font-weight:800;color:var(--gol);margin-bottom:4px}
+#p-prem .fcl{font-size:9.5px;color:var(--mu);line-height:1.55}
+#p-prem .fcl b{color:var(--tx);font-weight:700}
+
+/* card total + trimestral (modelo v12) */
+
+.totcard{border-radius:11px;padding:12px 13px;margin-top:10px;background:linear-gradient(135deg,rgba(0,154,68,.06),transparent)}
+.totcard.gol{border:1px solid rgba(0,154,68,.4)}
+.totcard.tat{border:1px solid rgba(227,176,74,.5);background:linear-gradient(135deg,rgba(227,176,74,.10),transparent);box-shadow:0 0 16px rgba(227,176,74,.14)}
+.totlbl{font-size:9.5px;font-weight:800;text-transform:uppercase;letter-spacing:.6px;color:var(--mu);text-align:center}
+.totv{font-size:30px;font-weight:900;line-height:1.05;text-align:center;margin:2px 0}
+.totcard.gol .totv,.totqv.gol{color:var(--gol)}
+.totcard.tat .totv,.totqv.gd{color:var(--gold)}
+.tots{font-size:9.5px;color:var(--mu);text-align:center;margin-bottom:8px}
+.totq{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;background:var(--s1);border-radius:8px;padding:8px}
+.totqi{text-align:center}
+.totqv{font-size:16px;font-weight:800}
+.totqv.gr{color:var(--gr)}
+.totqv.tx{color:var(--tx)}
+.totql{font-size:8.5px;color:var(--mu);margin-top:1px}
+.totnote{font-size:8.5px;color:var(--mu);margin-top:7px;line-height:1.5;border-top:1px solid var(--b);padding-top:6px;min-height:34px;box-sizing:border-box}
+
+/* Fontes de Dados + COW premissas */
+
+#p-prem .dtbl{width:100%;border-collapse:collapse;font-size:10px}
+#p-prem .dtbl td,#p-prem .dtbl th{padding:5px 9px;border-bottom:1px solid var(--b);text-align:left;vertical-align:top;line-height:1.45}
+#p-prem .dtbl td:first-child,#p-prem .dtbl th:first-child{color:var(--mu);width:32%;font-weight:700}
+#p-prem .dtbl td:last-child{color:var(--tx)}
+#p-prem .dtbl th{color:var(--gol);font-size:9px;text-transform:uppercase;letter-spacing:.4px}
+
+/* preço QAV por base */
+
+#p-prem .fqrow{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-top:8px}
+#p-prem .fqg{display:flex;flex-direction:column;gap:4px}
+#p-prem .fql{font-size:9.5px;font-weight:700;color:var(--mu)}
+#p-prem .fqrow input{width:96px;background:var(--s2);border:1px solid var(--b);border-radius:6px;padding:6px 8px;color:var(--tx);font-size:11px;font-weight:700}
+#p-prem .fqrow input:focus{outline:none;border-color:var(--gol)}
+#p-prem .fqrow input#fq_out{border-color:var(--gol)}
+.qavyr{width:76px!important;padding:6px 7px!important;text-align:right;font-size:12.5px;font-family:'SF Mono',ui-monospace,monospace}.cmp{border:1px solid var(--gold);border-radius:12px;background:linear-gradient(135deg,rgba(227,176,74,.09),rgba(32,232,152,.03));padding:14px 16px;margin:6px 0 16px}.cmp-h{font-size:15px;font-weight:800;color:var(--gold);margin-bottom:4px}.cmp-sub{font-size:11.5px;color:var(--mu);margin-bottom:12px;line-height:1.55}.cmp-card{background:var(--s1);border:1px solid var(--b);border-radius:9px;padding:9px 11px;margin-bottom:9px}.cmp-hd{display:flex;align-items:center;gap:8px;font-size:11.5px;font-weight:800;color:var(--tx);margin-bottom:7px;flex-wrap:wrap}.cmp-hd .tag{font-size:10px;color:var(--mu);font-weight:600}.cmp-badge{margin-left:auto;background:rgba(32,232,152,.14);border:1px solid rgba(32,232,152,.4);color:var(--gr);border-radius:20px;padding:2px 11px;font-size:11px;font-weight:800}.cmp-strip{display:flex;align-items:center;gap:6px;margin:3px 0}.cmp-lbl{flex:0 0 74px;font-size:9.5px;font-weight:800;letter-spacing:.02em;text-align:right}.cmp-lbl.gol{color:var(--gol2)}.cmp-lbl.wl{color:var(--gold)}.cmp-cells{display:flex;gap:4px;flex:1;min-width:0}.cmp-cell{position:relative;flex:1 1 0;min-width:0;height:26px;border-radius:5px;overflow:hidden;background:var(--s2);border:1px solid var(--b);display:flex;align-items:center;justify-content:center}.cmp-cell i{position:absolute;left:0;top:0;height:100%}.cmp-cell i.g{background:linear-gradient(90deg,var(--gol),var(--gol2))}.cmp-cell i.w{background:linear-gradient(90deg,var(--gold),#f4cd72)}.cmp-cell span{position:relative;font-size:8px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;padding:0 3px;font-family:ui-monospace,Menlo,monospace}.cmp-nqnote{font-size:10.5px;color:var(--mu);background:rgba(227,176,74,.06);border-left:2px solid var(--gold);border-radius:0 6px 6px 0;padding:6px 10px;margin-top:2px;line-height:1.5}.cmp-nqnote b{color:var(--tx)}.projprice{font-size:12px;color:var(--mu);margin:10px 0 2px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}.projprice input{width:82px;background:var(--s2);border:1px solid var(--gold);border-radius:6px;color:var(--tx);padding:4px 7px;font-size:13px;font-family:ui-monospace,monospace}.projprice .pp-note{color:var(--mu2)}.projgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}@media(max-width:900px){.projgrid{grid-template-columns:1fr}}.pgq{border-radius:12px;padding:10px 12px;border:1px solid var(--b);min-width:0}.pgq.wl{border-color:var(--gold);background:linear-gradient(135deg,rgba(227,176,74,.08),transparent)}.pgq.gol{border-color:rgba(240,120,40,.5);background:linear-gradient(135deg,rgba(240,120,40,.08),transparent)}.pgq-h{font-size:12px;font-weight:800;margin-bottom:8px}.pgq.wl .pgq-h{color:var(--gold)}.pgq.gol .pgq-h{color:var(--gol2)}.pgq .tw{overflow-x:auto}.pgtot.wl td{border-top:2px solid var(--gold);font-weight:800;background:rgba(227,176,74,.07)}.pgtot.gol td{border-top:2px solid rgba(240,120,40,.6);font-weight:800;color:var(--gol2);background:rgba(240,120,40,.06)}.cons5{border:1px solid var(--gold);border-radius:14px;background:linear-gradient(135deg,rgba(227,176,74,.10),rgba(227,176,74,.02));padding:14px 18px;margin:20px 0 6px}.cons5-h{font-size:13px;font-weight:800;color:var(--gold);margin-bottom:12px}.cons5-h span{display:block;font-size:10.5px;font-weight:600;color:var(--mu);margin-top:3px}.cons5-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}@media(max-width:820px){.cons5-row{grid-template-columns:repeat(2,1fr)}}.cons5-c{background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:11px 13px}.cons5-c.wl{border-color:var(--gold);background:rgba(227,176,74,.06)}.cons5-c.gol{border-color:rgba(240,120,40,.4)}.cons5-v{font-size:32px;font-weight:800;color:var(--tx);line-height:1.1}.cons5-c.wl .cons5-v{color:var(--gold)}.cons5-c.gol .cons5-v{color:var(--gol2)}.cons5-v.gr{color:var(--gr)}.cons5-l{font-size:10.5px;color:var(--mu);margin-top:5px;line-height:1.4}.cons5-note{font-size:10.5px;color:var(--mu2);margin-top:10px}.cons5.clk{cursor:pointer;transition:border-color .15s,transform .15s,box-shadow .15s}.cons5.clk:hover{border-color:#f4cd72;transform:translateY(-1px);box-shadow:0 6px 20px rgba(227,176,74,.15)}.reswl{font-size:14px;font-weight:800;color:var(--gold);background:linear-gradient(135deg,rgba(227,176,74,.12),transparent);border-left:3px solid var(--gold);border-radius:0 8px 8px 0;padding:8px 12px;margin:14px 0 6px}.cons5-est{font-size:9.5px;color:var(--gol2);margin-top:4px;line-height:1.35;opacity:.92}.cmp-cardx{display:flex;gap:12px;align-items:stretch}.cmp-cbody{flex:1;min-width:0}.card-sum{flex:0 0 122px;border-left:1px solid var(--b);padding-left:11px;display:flex;flex-direction:column;justify-content:center;gap:5px;text-align:right}.card-sum>div{display:flex;flex-direction:column;line-height:1.05}.cs-kg{font-size:16px;font-weight:800;color:var(--tx)}.cs-mid{font-size:13px;font-weight:700;color:var(--mu)}.cs-q{font-size:16px;font-weight:800;color:var(--gold)}.cs-l{font-size:8.5px;color:var(--mu);text-transform:uppercase;letter-spacing:.04em;margin-top:1px}.cs-sep{height:1px;background:var(--b);margin:2px 0}.cmp-tot{margin-top:8px;font-size:11.5px;color:var(--tx);background:rgba(227,176,74,.06);border:1px solid rgba(227,176,74,.25);border-radius:8px;padding:9px 12px;line-height:1.5}@media(max-width:720px){.cmp-cardx{flex-direction:column}.card-sum{flex:auto;border-left:none;border-top:1px solid var(--b);padding:8px 0 0;flex-direction:row;justify-content:space-around;text-align:center}}@media(max-width:1150px){.hdr{flex-direction:column;align-items:stretch}.hright{align-items:flex-start;text-align:left;width:100%;border-top:1px solid var(--b);padding-top:12px;margin-top:4px}.haudit{text-align:left}}#p-oper .phone .ap-ttl{color:#eaf2fb}#p-oper .phone .ap-ttl small{color:#8fb0d4}#p-oper .phone .ap-lbl{color:#8fb0d4}#p-oper .phone .ap-fld{background:#122a46;border-color:#284a70;color:#eaf2fb}#p-oper .phone .ap-fld b{color:#63b3f7}#p-oper .phone .ap-meta{background:rgba(47,143,224,.14);border-color:#3b9ae8}#p-oper .phone .m-v{color:#63b3f7}#p-oper .phone .m-l{color:#8fb0d4}#p-oper .phone .ap-logo,#p-oper .phone .ap-btn{background:linear-gradient(135deg,#1f6fd6,#3b9ae8)}#p-oper .phonerow{align-items:stretch}#p-oper .phonerow>div{display:flex;flex-direction:column}#p-oper .phone{flex:1 1 auto;display:flex;flex-direction:column}#p-oper .phone-scr{flex:1;min-height:404px}.mrow-wide .mcards{flex:1;width:100%}.mrow-wide .wcard{flex:1 1 0;min-width:0}#wtrilhoBox .wfill{background:linear-gradient(90deg,var(--gold),#f4cd72)!important}
+/* ===== extras TAP ===== */
+.ft{display:inline-block;padding:1px 6px;border-radius:4px;font-size:10px;font-weight:800}
+.f330{background:#dff3e7;color:#009A44}.f21L{background:#fbe3e8;color:#c22a4a}.f21n{background:#f7ecd4;color:#a3721a}.f20n{background:#e0ecfa;color:#2b6cb0}.fe90{background:#fde8da;color:#c05621}
+.num{font-family:ui-monospace,Menlo,monospace;text-align:right}
+td.num{text-align:right}
+.rfbox{background:var(--s1);border:1px solid var(--gold);border-radius:12px;padding:16px;margin-bottom:16px}
+.rft{font-size:14px;font-weight:800;color:var(--gold);margin-bottom:3px}
+.rfs{font-size:11px;color:var(--mu);margin-bottom:10px}
+.rfm{width:100%;border-collapse:collapse;font-size:11.5px}
+.rfm th{background:#faf3e2;color:#8a6510;font-size:10px;text-align:center;padding:8px 6px;border:1px solid #ecd9ac;line-height:1.4;white-space:normal;text-transform:none;letter-spacing:0}
+.rfm td{border:1px solid #ecd9ac;text-align:center;padding:9px 6px;white-space:normal;line-height:1.4;border-top:1px solid #ecd9ac}
+.rfm td.qty{font-weight:800;color:var(--acc);font-family:ui-monospace,monospace;font-size:12px}
+.rfm td.qty small{display:block;font-weight:600;color:var(--mu);font-size:10px}
+.rfm td.na{background:#f4f1ea;color:#c9c2b2}
+.rfm td.dest{text-align:left;color:var(--tx);font-weight:700;font-size:11px;background:#fdf8ec}
+.rfrem{font-size:11px;color:var(--mu);line-height:1.7;margin-top:9px}
+.rfrem b{color:var(--tx)}
+.vgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+@media(max-width:900px){.vgrid{grid-template-columns:repeat(2,1fr)}}
+.vc{background:var(--s1);border:1px solid var(--b);border-radius:10px;padding:14px;text-align:center}
+.vc .kl{font-size:10.5px;font-weight:800;color:var(--mu);text-transform:uppercase;letter-spacing:.03em;margin-bottom:6px}
+.vc .kv{font-size:24px;font-weight:800}
+.vc .ks{font-size:10px;color:var(--mu2);margin-top:3px}
+.kv.g{color:var(--acc)}.kv.y{color:var(--gold)}.kv.o{color:var(--go)}.kv.m{color:var(--mu)}.kv.b{color:#2b6cb0}
+.vbar{display:flex;height:28px;border-radius:7px;overflow:hidden;border:1px solid var(--b);margin:10px 0 4px;background:var(--s2)}
+.vseg{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;white-space:nowrap;overflow:hidden;text-shadow:0 1px 2px rgba(0,0,0,.5)}
+.vleg{display:flex;gap:14px;flex-wrap:wrap;font-size:11px;color:var(--mu);margin-bottom:8px}
+.vleg i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:4px;vertical-align:-1px}
+.brw{display:flex;align-items:center;gap:7px;margin:3px 0}
+.brl{font-size:10px;color:var(--mu);width:96px;flex-shrink:0;text-align:right;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:700}
+.brt{flex:1;height:17px;background:var(--s2);border:1px solid var(--b);border-radius:4px;overflow:hidden}
+.brf{height:100%;display:flex;align-items:center;padding-left:6px}
+.bre{font-size:10px;color:var(--mu);width:72px;flex-shrink:0;text-align:right;font-family:ui-monospace,monospace;font-weight:700}
+.ibx{background:#eef7f1;border:1px solid var(--b);border-radius:9px;padding:10px 13px;font-size:11.5px;color:var(--mu);line-height:1.6;margin:10px 0}
+.ibx strong{color:var(--acc)}
+.wgrid{margin:8px 0 14px}
+.prembx{background:var(--s1);border:1px solid var(--b);border-radius:11px;padding:15px;margin-bottom:14px}
+.prembx.gd{border-color:var(--gold)}
+.prembx.gn{border-color:var(--acc)}
+.prem-t2{font-size:11px;font-weight:800;color:var(--acc);text-transform:uppercase;letter-spacing:.04em;margin-bottom:9px}
+.prembx.gd .prem-t2{color:var(--gold)}
+.irow{display:flex;justify-content:space-between;gap:14px;padding:5px 0;border-bottom:1px dashed var(--b);font-size:12px}
+.irow:last-of-type{border-bottom:none}
+.irl2{color:var(--mu);flex-shrink:0}.irv2{font-weight:700;text-align:right;color:var(--tx)}
+.cowin{width:78px;background:#fdf8ec;border:1px solid var(--gold);border-radius:6px;color:#8a6510;font-weight:800;padding:4px 7px;font-size:12px;font-family:ui-monospace,monospace}
+.tl-pol{background:var(--gold2)!important}
+.tri-lbl.tl-pol{color:var(--gold)!important;background:none!important}
+@media print{.navbar,.toggle,.detailrow{display:none!important}.panel{display:block!important;page-break-before:always}.panel:first-of-type{page-break-before:auto}}
+</style></head><body>
+<header class="hdr">
+  <div class="brandwrap">
+    <img class="tatlogo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAABAAAAAQACAYAAAB/HSuDAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAAJYAAACWACbxr6zAAAAB3RJTUUH6gQWAhIvK1ilIwAATURJREFUeNrt/fefndV973+/19rqHSGa6WAMBINxxQUbJ980Jyc+Jz0+yUmc4p/vP8gI4xrXOI7jOHESx0iid9MxvfcOqnOt+4etQYOQQAKNZs+s5/PxQGXP3qMZaQB9Xuu61iprTrioBQAAAFjQ6lx/AAAAAMDsEwAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAA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AAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABABwQAAAAA6IAAAAAAAB0QAAAAAKADAgAAAAB0QAAAAACADggAAAAA0AEBAAAAADogAAAAAEAHBAAAAADogAAAAAAAHRAAAAAAoAMCAAAAAHRAAAAAAIAOCAAAAADQAQEAAAAAOiAAAAAAQAcEAAAAAOiAAAAAAAAdEAAAAACgAwIAAAAAdEAAAAAAgA4IAAAAANABAQAAAAA6IAAAAABAB/7/cevgNoxHppEAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjYtMDQtMjJUMDI6MTg6NDcrMDA6MDA3cZ4/AAAAJXRFWHRkYXRlOm1vZGlmeQAyMDI2LTA0LTIyVDAyOjE4OjQ3KzAwOjAwRiwmgwAAAABJRU5ErkJggg==" alt="TAT Operating">
+    <div class="htxt">
+      <div class="htitle">TAT WaterLine&trade; &middot; <span style="color:var(--acc)">TAP Air Portugal</span></div>
+      <div class="hsub">Otimiza&ccedil;&atilde;o de &aacute;gua pot&aacute;vel &middot; frota oficial 99 aeronaves (22 widebody A330 &middot; 58 narrowbody A32X &middot; 19 E190/E195) &middot; rede completa 139 rotas</div>
+      <div class="hind">&#9992; An&aacute;lise independente TAT Operating &mdash; <i>Smart Water. Real Results.</i> &middot; baseline: ANEXO RF 720</div>
+      <div class="hbadges">
+        <a class="hpill web" href="https://www.tatoperating.com" target="_blank">&#127760; WWW.TATOPERATING.COM</a>
+        <span class="hpill">&#128274; CONFIDENCIAL &middot; TAT OPERATING</span>
+        <span class="hpill date" id="hdrD">&#128197; &mdash;</span>
+      </div>
+    </div>
+  </div>
+  <div class="hright">
+    <div class="hannual">&#128197; <b>Base Jul 2026 anualizada</b><br><span id="hOps">115.544</span> voos/ano &middot; 16,7M pax (2025)</div>
+    <div class="haudit">&#10003; Voo a voo &middot; 139 rotas &middot; LIS &asymp;134 partidas/dia &middot; COW oficial Azul (D-365) + contraprova EY Sheet 5 &middot; set/2026</div>
+  </div>
+</header>
+<div class="detailrow"><span class="dlabel">DETALHE &#9656;</span><button class="dpill" onclick="go('prem')">&#128203; Premissas &amp; COW</button><button class="dpill" onclick="go('rf720')">&#128204; ANEXO RF 720</button></div>
+<nav class="navbar">
+  <div class="tab on" id="t-dash" onclick="go('dash')">&#128202; Dashboard</div>
+  <div class="tab" id="t-wtril" onclick="go('wtril')">&#128167; Trilho WaterLine</div>
+  <div class="tab" id="t-valid" onclick="go('valid')">&#128167; WaterLine Validador</div>
+  <div class="tab" id="t-rotas" onclick="go('rotas')">&#9992; Todas as Rotas (139)</div>
+  <div class="tab" id="t-rf720" onclick="go('rf720')">&#128204; ANEXO RF 720</div>
+  <div class="tab" id="t-proj" onclick="go('proj')">&#128200; Resultado 2026-31</div>
+  <div class="tab" id="t-prem" onclick="go('prem')">&#128203; Premissas</div>
+</nav>
+<div class="toggle">
+  <span class="qavin">&#9998; QAV (&euro;/L) <input id="qavPrice" type="number" value="0.90" step="0.01" min="0" oninput="render()"></span>
+  <span class="qavin">&#9998; LF (%) <input id="lfInput" type="number" value="82" step="0.5" min="1" max="100" oninput="render()"></span>
+  <span class="lbl">Oficial 2025: LF 84,2% &middot; horas = block time por rota &times; voos &middot; COW edit&aacute;vel nas Premissas</span>
+</div>
+<div class="main">
+
+<!-- ============ DASHBOARD ============ -->
+<div id="p-dash" class="panel on">
+<div class="basenote">Os n&uacute;meros abaixo usam a <b>rede completa TAP</b>: 98 rotas do VooAVoo + 41 rotas da rede oficial de destinos, semana-tipo Jul/2026 anualizada em <b>115.544 voos</b> (&asymp;97% dos &asymp;116&ndash;120k voos oficiais 2025/26). As 41 rotas adicionadas t&ecirc;m frequ&ecirc;ncia estimada de fontes p&uacute;blicas (marcadas com * na tabela) &mdash; a confirmar com Cirium/OAG. Dois programas independentes, ambos medidos vs tanque cheio.</div>
+
+<div class="epgrid">
+  <div class="epanel gol">
+    <div class="eph"><span class="epbadge gol epbadge-logo" style="background:#fff"><img src="data:image/png;base64,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" alt="TAP Air Portugal"></span><div><div class="ept">Cen&aacute;rio TAP &middot; ANEXO RF 720</div><div class="eps">Processo atual &middot; TA/AS/RF N&ordm;720 REV10 08MAY2025 &middot; fra&ccedil;&otilde;es fixas de tanque &middot; sem medi&ccedil;&atilde;o por voo</div></div></div>
+    <div class="ehero gol" onclick="go('rf720')" title="Ver o ANEXO RF 720" style="cursor:pointer"><div class="ehl">&#128176; Economia do procedimento TAP / ano</div><div class="ehv" id="rfHero">&middot;</div><div class="ehs" id="rfHeroS">&middot;</div>
+      <div class="ehnote golnote"><b>A TAP j&aacute; otimiza:</b> a matriz N&ordm;720 embarca 1/4&ndash;4/4 do tanque por grupo de rotas, com regra ON CALL. Mas &eacute; <b>est&aacute;tica, por grupo de esta&ccedil;&otilde;es</b>, n&atilde;o considera load factor nem block real, e <b>sem refinamento din&acirc;mico documentado no GOM/GOTM</b>.<span class="golgo">Ver a matriz do ANEXO RF 720 &rarr;</span></div></div>
+    <div class="erow2"><div class="erow"><div class="erl">&#9981; QAV economizado</div><div class="erv gol" id="rfQavL">&middot;</div><div class="ers">litros de Jet-A n&atilde;o queimados/ano</div></div>
+    <div class="erow"><div class="erl">&#127793; CO&#8322; evitado / ano</div><div class="erv" id="rfCo2">&middot;</div><div class="ers">toneladas de CO&#8322;</div>
+      <div class="corsia no">&#10007; Sem monitoriza&ccedil;&atilde;o &rarr; <b>n&atilde;o audit&aacute;vel</b>. N&atilde;o pode ser apresentado como iniciativa CORSIA/EU ETS nem gerar cr&eacute;dito.</div></div></div>
+    <div class="ebars"><div class="ebt">ECONOMIA POR FROTA (&euro;/ano)</div><div style="font-size:10.5px;color:var(--mu);margin:1px 0 7px;line-height:1.4">Base: COW oficial Azul D-365 (mesma frota) &times; block por rota &times; pre&ccedil;o QAV.</div><div id="rfBars"></div></div>
+  </div>
+  <div class="epanel tat">
+    <div class="eph"><span class="epbadge tat"><img src="data:image/png;base64,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" alt="TAT"></span><div><div class="ept">TAT WaterLine&trade;</div><div class="eps"><i>Smart Water. Real Results.</i> &middot; uplift din&acirc;mico voo a voo &middot; medido litro a litro</div></div></div>
+    <div class="ehero tat"><div class="ehl">&#128176; Economia WaterLine / ano</div><div class="ehv" id="tatHero">&middot;</div><div class="ehs" id="tatHeroS">&middot;</div>
+      <div class="ehnote tat"><b>Cada litro embarcado &eacute; calculado voo a voo</b> &middot; frota, block time, load factor e t&eacute;rmico entram na conta de cada etapa, com medi&ccedil;&atilde;o e feedback cont&iacute;nuo.<span class="tatgo">&#10003; Medido litro a litro &middot; cada voo, valor audit&aacute;vel</span></div></div>
+    <div class="erow2"><div class="erow"><div class="erl">&#9981; QAV economizado</div><div class="erv tat" id="tatQavL">&middot;</div><div class="ers">litros de Jet-A n&atilde;o queimados/ano</div></div>
+    <div class="erow"><div class="erl">&#127793; CO&#8322; evitado / ano</div><div class="erv gr" id="tatCo2">&middot;</div><div class="ers">toneladas de CO&#8322; &middot; <span id="tatH2o">&middot;</span> de &aacute;gua n&atilde;o embarcada</div>
+      <div class="corsia yes">&#10003; Medido &rarr; <b>audit&aacute;vel</b>. Apresent&aacute;vel como iniciativa CORSIA/EU ETS &middot; valor de carbono retido 100% pela TAP.</div></div></div>
+    <div class="ebars"><div class="ebt">ECONOMIA POR FROTA (&euro;/ano)</div><div style="font-size:10.5px;color:var(--mu);margin:1px 0 7px;line-height:1.4">Base: COW oficial Azul D-365 (mesma frota) &times; block por rota &times; pre&ccedil;o QAV.</div><div id="tatBars"></div></div>
+  </div>
+</div>
+
+<div class="sec">&#128269; Top 15 rotas &middot; economia &euro;/ano por programa</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+  <div class="prembx gd"><div class="prem-t2">ANEXO RF 720 &middot; processo atual</div><div id="topRf"></div></div>
+  <div class="prembx gn"><div class="prem-t2">TAT WaterLine</div><div id="topWl"></div></div>
+</div>
+</div>
+
+<!-- ============ TRILHO ============ -->
+<div id="p-wtril" class="panel">
+<div class="sec">&#128167; Trilho WaterLine &middot; a mesma aeronave, um dia t&iacute;pico da malha TAP, perna a perna</div>
+<div class="tri-intro">Seis trilhos, um por perfil de frota (<b>A320neo &middot; A321neo &middot; A321LR &middot; A330neo longo curso &middot; A330neo sem QTA &middot; E190</b>), com um dia t&iacute;pico da escala LIS/OPO. Em cada perna, a barra mostra a <b>&aacute;gua embarcada &agrave; partida em % do tanque</b>: a linha dourada &eacute; o uplift fixo do <b>ANEXO RF 720</b>; a linha verde &eacute; o que a <b>WaterLine</b> embarcaria com c&aacute;lculo voo a voo (consumo previsto + margem 10%). Nos destinos <b>sem QTA</b> (&#8635;) a &aacute;gua da partida cobre ida+volta &mdash; na perna de regresso n&atilde;o h&aacute; abastecimento e a barra mostra o remanescente a bordo.</div>
+<div class="tri-leg"><span><i class="tl-b tl-pol"></i>Linha 1 &middot; ANEXO RF 720 &middot; o que a matriz manda embarcar</span><span><i class="tl-b tl-wl"></i>Linha 2 &middot; WaterLine &middot; o que o c&aacute;lculo voo a voo embarcaria</span></div>
+<div id="triCards"></div>
+
+<div class="sec">&#8635; Bases sem QTA &middot; perda estimada do 4/4 fixo</div>
+<div class="ibx">Nestes destinos n&atilde;o h&aacute; water servicing (LAD &middot; BVC &middot; OXB &middot; TMS) ou a matriz manda embarcar para a rota completa (Norte de &Aacute;frica nos narrowbody): o ANEXO RF 720 usa <strong>4/4 do tanque</strong> e a economia do programa atual nessas rotas &eacute; <strong>zero ou m&iacute;nima</strong>. A WaterLine tamb&eacute;m embarca ida+volta &mdash; mas s&oacute; o consumo previsto das duas pernas + 10%. A coluna &laquo;perda estimada&raquo; &eacute; o que fica na mesa por manter o 4/4 fixo.</div>
+<div class="tw"><table>
+  <thead><tr><th>Rota</th><th>Frota</th><th class="num">Freq/sem</th><th class="num">RF720 (L)</th><th class="num">WL ida+volta (L)</th><th class="num">&Aacute;gua morta/voo (L)</th><th class="num">&euro;/ano &mdash; RF720</th><th class="num">&euro;/ano &mdash; WL</th><th class="num">Perda estimada &euro;/ano</th></tr></thead>
+  <tbody id="noqtaTb"></tbody>
+</table></div>
+<div style="font-size:11px;color:var(--mu);margin-top:8px" id="noqtaSum"></div>
+</div>
+
+<!-- ============ VALIDADOR ============ -->
+<div id="p-valid" class="panel">
+<div class="ibx"><strong>WaterLine Validador</strong> &mdash; frota <strong>narrowbody</strong> (A320neo &middot; A321neo &middot; A321LR &middot; E190), onde arranca a valida&ccedil;&atilde;o &mdash; selecione uma rota para ver, lado a lado, os dois programas: uplift fixo do <strong>ANEXO RF 720</strong> e uplift din&acirc;mico da <strong>TAT WaterLine</strong>, cada um com a sua economia anual medida vs tanque cheio. Barras &agrave; escala do tanque.</div>
+<div style="display:flex;gap:14px;align-items:flex-end;flex-wrap:wrap;margin-bottom:14px">
+  <span class="qavin">Rota <select id="vRoute" onchange="vre()" style="min-width:270px;padding:7px 10px;border:1px solid var(--b);border-radius:7px;background:#fff;font-size:12.5px"></select></span>
+  <div id="vAc" style="font-size:13px;font-weight:800;color:var(--acc)">&mdash;</div>
+</div>
+<div class="vgrid">
+  <div class="vc"><div class="kl">Tanque</div><div class="kv m" id="vTank">&mdash;</div><div class="ks">capacidade de refer&ecirc;ncia (L)</div></div>
+  <div class="vc"><div class="kl">Uplift RF 720</div><div class="kv y" id="vRf">&mdash;</div><div class="ks" id="vRfS">fra&ccedil;&atilde;o fixa do processo atual</div></div>
+  <div class="vc"><div class="kl">Consumo modelado</div><div class="kv o" id="vCons">&mdash;</div><div class="ks" id="vConsS">&mdash;</div></div>
+  <div class="vc"><div class="kl">WaterLine recomenda</div><div class="kv g" id="vWl">&mdash;</div><div class="ks">consumo + margem operacional 10%</div></div>
+</div>
+<div class="prembx">
+  <div class="prem-t2">Composi&ccedil;&atilde;o do tanque nesta rota</div>
+  <div class="vleg"><span><i style="background:#e8801a"></i>Consumo previsto</span><span><i style="background:#16b45e"></i>Margem WaterLine 10%</span><span><i style="background:#c9932f"></i>Diferen&ccedil;a de uplift RF 720 / WaterLine</span><span><i style="background:#cfe0d5"></i>Restante at&eacute; tanque cheio</span></div>
+  <div class="vbar" id="vBar"></div>
+  <div style="font-size:11px;color:var(--mu)" id="vBarS">&mdash;</div>
+</div>
+<div class="vgrid">
+  <div class="vc"><div class="kl">&euro;/ano &mdash; RF 720</div><div class="kv y" id="vErf">&mdash;</div><div class="ks">programa atual &middot; vs tanque cheio</div></div>
+  <div class="vc"><div class="kl">&euro;/ano &mdash; WaterLine</div><div class="kv g" id="vEwl">&mdash;</div><div class="ks">programa TAT &middot; vs tanque cheio</div></div>
+  <div class="vc"><div class="kl">QAV/ano &mdash; WaterLine</div><div class="kv o" id="vDq">&mdash;</div><div class="ks" id="vDqS">&mdash;</div></div>
+  <div class="vc"><div class="kl">&Delta; &aacute;gua por voo</div><div class="kv b" id="vDw">&mdash;</div><div class="ks">diferen&ccedil;a de uplift entre os programas</div></div>
+</div>
+<div class="prembx gd" id="v2nd" style="display:none">
+  <div class="prem-t2">&#8635; 2&ordf; perna (volta) &mdash; destino sem QTA, sem abastecimento</div>
+  <div class="vleg"><span><i style="background:#e8801a"></i>Consumo da volta</span><span><i style="background:#16b45e"></i>Margem remanescente WaterLine</span><span><i style="background:#c9932f"></i>Excesso RF 720 ainda a bordo</span><span><i style="background:#cfe0d5"></i>Vazio</span></div>
+  <div style="font-size:11px;font-weight:800;color:var(--gold);margin:6px 0 2px">Partida da volta &middot; ANEXO RF 720</div>
+  <div class="vbar" id="v2BarRf"></div>
+  <div style="font-size:11px;font-weight:800;color:var(--acc);margin:10px 0 2px">Partida da volta &middot; WaterLine</div>
+  <div class="vbar" id="v2BarWl"></div>
+  <div style="font-size:11px;color:var(--mu);margin-top:8px" id="v2S"></div>
+</div>
+<div class="ibx" id="vNote"></div>
+</div>
+
+<!-- ============ ROTAS ============ -->
+<div id="p-rotas" class="panel">
+<div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:10px">
+  <span class="qavin">&#128269; <input type="text" id="q" placeholder="rota, aeronave, IATA&hellip;" oninput="rT()" style="width:190px"></span>
+  <span class="qavin">Ordenar <select id="srt" onchange="rT()" style="padding:6px 9px;border:1px solid var(--b);border-radius:7px;background:#fff">
+    <option value="eur">&euro;/ano &mdash; WaterLine</option><option value="rf">&euro;/ano &mdash; RF 720</option><option value="fq">Frequ&ecirc;ncia</option><option value="dist">Dist&acirc;ncia</option><option value="n">#</option>
+  </select></span>
+  <div style="margin-left:auto;font-size:11px;color:var(--mu)" id="tinfo"></div>
+</div>
+<div class="tw"><table>
+  <thead><tr><th>#</th><th>Rota</th><th>Aeronave</th><th class="num">Freq/sem</th><th class="num">Dist (km)</th><th class="num">Block (h)</th><th class="num">Pax@LF</th><th class="num">Tanque (L)</th><th class="num">RF720 (L)</th><th class="num">Consumo (L)</th><th class="num">WL (L)</th><th class="num">Voos/ano</th><th class="num">&euro;/ano RF720</th><th class="num">&euro;/ano WL</th></tr></thead>
+  <tbody id="tb"></tbody>
+</table></div>
+<div style="font-size:11px;color:var(--mu);margin-top:8px">Programas independentes, ambos medidos vs tanque cheio. WL (L) = uplift din&acirc;mico WaterLine (consumo + 10%). <span style="color:var(--go)">*</span> = rota da rede oficial TAP fora do VooAVoo &mdash; frequ&ecirc;ncia estimada de fontes p&uacute;blicas, a confirmar com Cirium/OAG.</div>
+</div>
+
+<!-- ============ ANEXO RF 720 ============ -->
+<div id="p-rf720" class="panel">
+<div class="molabel">&#128204; <b>ANEXO RF 720</b> &middot; TAP Air Portugal &middot; Potable Water Servicing &middot; TA/AS/RF N&ordm;720 REV10 08MAY2025 &middot; baseline do estudo &mdash; a TAP j&aacute; otimiza vs tanque cheio com esta matriz &middot; <i>any printed copy is considered obsolete</i></div>
+<div class="ibx">Sem refinamento din&acirc;mico documentado no <strong>GOM</strong> (ED03 REV07 31MAR2026) ou <strong>GOTM</strong> (ED03 REV05 31MAR2026). O Turnaround Plan TAP (TA/AS/RF N&ordm;060 REV21) prev&ecirc; servi&ccedil;o LAVATORY/WATER em 100% dos turnarounds, sem par&acirc;metro de calibragem por consumo esperado.</div>
+
+<div class="rfbox">
+  <div class="rft">1 &middot; FROTA EMBRAER &mdash; E190</div>
+  <div class="rfs">Litros de refer&ecirc;ncia &middot; fra&ccedil;&otilde;es do tanque &middot; leitura: coluna = origem (FROM), linha = destino (TO)</div>
+  <div class="tw" style="border:none"><table class="rfm">
+    <tr><th style="width:16%">FROM &rarr;<br>LIS OPO FAO FNC PXO</th><th style="width:16%">EUROPE &middot; AZORES<br><small>(after night stop)</small></th><th style="width:17%">EUROPE &middot; AZORES<br>NORTH AFRICA</th><th style="width:19%">ABJ ACC BJL CKY DME<br>DSS RAI SID TLV VXE</th><th style="width:22%">&hellip; TO</th></tr>
+    <tr><td class="qty">2/4 (50%)<small>50 L</small></td><td class="qty">2/4 (50%)<small>50 L</small></td><td class="qty">ON CALL (*)<small>2/4 (50%) &middot; 50 L</small></td><td class="qty">3/4 (75%)<small>75 L</small></td><td class="dest">LIS OPO FAO FNC PXO</td></tr>
+    <tr><td class="qty">2/4 (50%)<small>50 L</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="dest">AZORES &middot; EUROPE <small>(for night stop)</small></td></tr>
+    <tr><td class="qty">3/4 (75%)<small>75 L</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="dest">ABJ ACC BJL CKY DME DSS TLV RAI SID VXE</td></tr>
+    <tr><td class="qty">4/4 (100%)<small>100 L</small></td><td class="na"></td><td class="na"></td><td class="qty">3/4 (75%)</td><td class="dest">EUROPE &middot; AZORES &middot; NORTH AFRICA &middot; BVC OXB TMS <small>(round trip)</small></td></tr>
+  </table></div>
+  <div class="rfrem"><b>Remarks:</b> North Africa = Marrocos, Arg&eacute;lia, Tun&iacute;sia &middot; Charter: 3/4 (75%) / 75 L &middot; Treino/teste: 1/4 (25%) / 25 L &middot; Cargo: 2/4 (50%) / 50 L &middot; Restantes casos: tanque cheio &middot; Em BVC, OXB e TMS n&atilde;o h&aacute; water servicing &middot; Litros apenas para refer&ecirc;ncia.</div>
+</div>
+
+<div class="rfbox">
+  <div class="rft">2 &middot; FROTA A319 / A320 / A321</div>
+  <div class="rfs">Litros de refer&ecirc;ncia &middot; leitura: coluna = origem (FROM), linha = destino (TO)</div>
+  <div class="tw" style="border:none"><table class="rfm">
+    <tr><th style="width:16%">FROM &rarr;<br>LIS OPO FAO FNC PXO</th><th style="width:17%">EUROPE &middot; AZORES<br>NORTH AFRICA</th><th style="width:16%">EUROPE &middot; AZORES<br><small>(after night stop)</small></th><th style="width:19%">ABJ ACC BJL CKY DME<br>DSS TLV SID RAI VXE</th><th style="width:22%">&hellip; TO</th></tr>
+    <tr><td class="qty">2/4 (50%)<small>100 L</small></td><td class="qty">ON CALL (*)<small>2/4 (50%) &middot; 100 L</small></td><td class="qty">2/4 (50%)<small>100 L</small></td><td class="qty">3/4 (75%)<small>150 L</small></td><td class="dest">LIS OPO FAO FNC PXO</td></tr>
+    <tr><td class="qty">2/4 (50%)<small>100 L</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="dest">AZORES &middot; EUROPE <small>(for night stop)</small></td></tr>
+    <tr><td class="qty">3/4 (75%)<small>150 L</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="dest">ABJ ACC BJL CKY DME DSS TLV SID RAI VXE</td></tr>
+    <tr><td class="qty">4/4 (100%)<small>200 L</small></td><td class="na"></td><td class="na"></td><td class="qty">3/4 (75%)<small>150 L</small></td><td class="dest">EUROPE &middot; NORTH AFRICA &middot; AZORES &middot; BVC OXB TMS <small>(round trip)</small></td></tr>
+  </table></div>
+  <div class="rfrem"><b>Remarks:</b> North Africa = Marrocos, Arg&eacute;lia, Tun&iacute;sia &middot; <b>A321LR em rotas long haul: 3/4 (75%) / 150 L</b> &middot; Charter: 3/4 (75%) / 150 L &middot; Treino/teste: 1/4 (25%) / 50 L &middot; Cargo: 2/4 (50%) / 100 L &middot; Restantes casos: tanque cheio &middot; Em BVC, OXB e TMS n&atilde;o h&aacute; water servicing &middot; Litros apenas para refer&ecirc;ncia.</div>
+</div>
+
+<div class="rfbox">
+  <div class="rft">3 &middot; FROTA A330</div>
+  <div class="rfs">Litros de refer&ecirc;ncia &middot; leitura: coluna = origem (FROM), linha = destino (TO)</div>
+  <div class="tw" style="border:none"><table class="rfm">
+    <tr><th style="width:14%">FROM &rarr;<br>LIS OPO FAO FNC PXO</th><th style="width:22%">EUROPE &middot; NORTH AFRICA &middot; CAPE VERDE &middot; AZORES &middot; BEL BOS CCS EWR FOR JFK NAT REC SSA YYZ DSS</th><th style="width:20%">BSB CNF CUN GIG GRU IAD MIA MPM ORD POA PUJ YUL FLN</th><th style="width:14%">ABJ ACC BJL CKY LAX SFO</th><th style="width:22%">&hellip; TO</th></tr>
+    <tr><td class="qty">1/4 (25%)<small>175 L</small></td><td class="qty">2/4 (50%)<small>350 L</small></td><td class="qty">3/4 (75%)<small>525 L</small></td><td class="qty">4/4 (100%)<small>700 L</small></td><td class="dest">LIS OPO FAO FNC PXO</td></tr>
+    <tr><td class="qty">2/4 (50%)<small>350 L</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="dest">EUROPE &middot; CAPE VERDE &middot; NORTH AFRICA &middot; AZORES &middot; BEL BOS CCS EWR FOR JFK NAT REC SSA YYZ DME DSS</td></tr>
+    <tr><td class="qty">3/4 (75%)<small>525 L</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="dest">BSB CNF CUN GIG GRU IAD MIA MPM ORD POA PUJ YUL FLN</td></tr>
+    <tr><td class="qty">4/4 (100%)<small>700 L</small></td><td class="na"></td><td class="na"></td><td class="na"></td><td class="dest">ABJ ACC BJL LAD LAX OXB CKY SFO</td></tr>
+  </table></div>
+  <div class="rfrem"><b>Remarks:</b> North Africa = Marrocos, Arg&eacute;lia, Tun&iacute;sia &middot; Treino/teste: 1/4 (25%) / 175 L &middot; Charter: 3/4 (75%) / 525 L &middot; Cargo: 2/4 (50%) / 350 L, exceto para LAD onde se usa 4/4 (100%) / 700 L &middot; Em LAD, BVC, OXB e TMS n&atilde;o h&aacute; water servicing &middot; Restantes casos: tanque cheio &middot; Litros apenas para refer&ecirc;ncia.</div>
+</div>
+<div class="ibx">(*) <strong>ON CALL</strong> &mdash; solicitar water servicing apenas se a quantidade remanescente do voo anterior for inferior &agrave; quantidade requerida para o voo seguinte.</div>
+</div>
+
+<!-- ============ RESULTADO 2026-31 ============ -->
+<div id="p-proj" class="panel">
+<div class="molabel">&#128200; <b>Resultado 2026&ndash;2031</b> &middot; cada programa projetado de forma independente, vs tanque cheio &middot; crescimento <input id="grIn" type="number" value="4" step="1" min="0" max="15" oninput="render()" style="width:52px;background:#fdf8ec;border:1px solid var(--gold);border-radius:6px;font-weight:800;color:#8a6510;padding:3px 6px">%/ano a partir de 2028 (premissa TP 4% &middot; estudo v11 usa 10%)</div>
+<div class="epgrid">
+  <div class="epanel gol"><div class="eph"><span class="epbadge gol epbadge-logo" style="background:#fff"><img src="data:image/png;base64,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" alt="TAP"></span><div><div class="ept">ANEXO RF 720 &middot; 2026&ndash;2031</div><div class="eps">processo atual, projetado</div></div></div><div id="projRf" style="margin-top:8px"></div></div>
+  <div class="epanel tat"><div class="eph"><span class="epbadge tat"><img src="data:image/png;base64,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" alt="TAT"></span><div><div class="ept">TAT WaterLine &middot; 2026&ndash;2031</div><div class="eps">programa TAT, projetado</div></div></div><div id="projWl" style="margin-top:8px"></div></div>
+</div>
+<div class="prembx gn">
+  <div class="prem-t2">Acumulado 6 anos (2026&ndash;2031)</div>
+  <div class="irow"><span class="irl2">Programa ANEXO RF 720</span><span class="irv2" id="accRf">&middot;</span></div>
+  <div class="irow"><span class="irl2">Programa TAT WaterLine</span><span class="irv2" id="accWl">&middot;</span></div>
+  <div class="irow"><span class="irl2">CO&#8322; evit&aacute;vel acumulado (WL)</span><span class="irv2" id="accCo2">&middot;</span></div>
+</div>
+<div class="prembx gd">
+  <div class="prem-t2">Roadmap operacional (ref.: estudo v11, jun/2026)</div>
+  <div class="irow"><span class="irl2">Ago/2026 &middot; Diagn&oacute;stico</span><span class="irv2">kickoff + auditoria do ANEXO N&ordm;720 + an&aacute;lise do schedule completo + rotas piloto &middot; fee &euro;100K</span></div>
+  <div class="irow"><span class="irl2">Set&ndash;Dez/2026 &middot; Piloto</span><span class="irv2">rotas piloto LIS com medi&ccedil;&atilde;o por voo &middot; calibra&ccedil;&atilde;o COW/consumo TAP</span></div>
+  <div class="irow"><span class="irl2">2027 &middot; Rollout</span><span class="irv2">rede completa &middot; integra&ccedil;&atilde;o GOM/GOTM/Turnaround Plan</span></div>
+  <div class="irow"><span class="irl2">2028+ &middot; Regime est&aacute;vel</span><span class="irv2">35% recorrente sobre saving QAV &middot; EU ETS 100% retido pela TAP</span></div>
+</div>
+</div>
+
+<!-- ============ PREMISSAS ============ -->
+<div id="p-prem" class="panel">
+<div class="prembx gd">
+  <div class="prem-t2">&#9878; COW &middot; Cost of Weight &middot; edit&aacute;vel (L QAV / L &aacute;gua / h)</div>
+  <div style="font-size:11.5px;color:var(--mu);line-height:1.6;margin-bottom:10px">QAV por leg = &aacute;gua a bordo (L) &times; COW &times; block time (h). <b style="color:var(--tx)">Fonte prim&aacute;ria: COW oficial Azul (D-365, Eng. de Combust&iacute;vel, 13/08/2026) &mdash; frota id&ecirc;ntica &agrave; TAP</b> (A330neo, A330-200, A320neo, A321neo, E-Jets). Contraprova: estudo Etihad (EY Sheet 5) e refer&ecirc;ncia IATA k_h = 0,0407 (0,033 kg/kg/h). Edite e o dashboard recalcula.</div>
+  <div class="tw"><table>
+    <thead><tr><th>Fam&iacute;lia TAP</th><th>COW (edit&aacute;vel)</th><th>Fonte prim&aacute;ria (Azul D-365)</th><th>Contraprova EY Sheet 5</th></tr></thead>
+    <tbody>
+      <tr><td><span class="ft f330">A330-900neo</span></td><td><input class="cowin" id="cow_A330-900neo" type="number" step="0.0001" value="0.0414" oninput="render()"></td><td>0,0414 &middot; oficial Azul &mdash; mesma aeronave</td><td>787-9: 0,0308 (proxy WB)</td></tr>
+      <tr><td><span class="ft f330">A330-200</span></td><td><input class="cowin" id="cow_A330-200" type="number" step="0.0001" value="0.0433" oninput="render()"></td><td>0,0433 &middot; oficial Azul &mdash; mesma aeronave</td><td>&mdash;</td></tr>
+      <tr><td><span class="ft f21L">A321LR</span></td><td><input class="cowin" id="cow_A321LR" type="number" step="0.0001" value="0.0449" oninput="render()"></td><td>0,0449 &middot; A321neo Azul (mesma c&eacute;lula/motor)</td><td>A321: 0,0404</td></tr>
+      <tr><td><span class="ft f21n">A321neo</span></td><td><input class="cowin" id="cow_A321neo" type="number" step="0.0001" value="0.0449" oninput="render()"></td><td>0,0449 &middot; oficial Azul &mdash; mesma aeronave</td><td>A321: 0,0404</td></tr>
+      <tr><td><span class="ft f20n">A320neo</span></td><td><input class="cowin" id="cow_A320neo" type="number" step="0.0001" value="0.0448" oninput="render()"></td><td>0,0448 &middot; oficial Azul &mdash; mesma aeronave</td><td>A320: 0,0443</td></tr>
+      <tr><td><span class="ft fe90">E190</span></td><td><input class="cowin" id="cow_E190" type="number" step="0.0001" value="0.0674" oninput="render()"></td><td>0,0674 &middot; E195-E1 Azul (mesma gera&ccedil;&atilde;o E1)</td><td>&mdash; (sem E-Jet na EY)</td></tr>
+    </tbody>
+  </table></div>
+  <div style="font-size:10.5px;color:var(--mu);margin-top:8px">A converg&ecirc;ncia Azul&times;EY nos narrowbodies (0,0448/0,0443 e 0,0449/0,0404) valida a ordem de grandeza. Confirmar com dados de performance TAP antes da vers&atilde;o final.</div>
+</div>
+
+<div class="prembx gn">
+  <div class="prem-t2">&#128196; Dados oficiais TAP &middot; fontes p&uacute;blicas (set/2026)</div>
+  <div class="irow"><span class="irl2">Frota (1T25, resultados TAP)</span><span class="irv2">99 aeronaves &mdash; 22 WB (A330-200/-900neo) &middot; 58 NB (A319/A320/A321 ceo+neo+LR) &middot; 19 E190/E195</span></div>
+  <div class="irow"><span class="irl2">Plano de frota</span><span class="irv2">+24 aeronaves nos pr&oacute;ximos 2 anos (moderniza&ccedil;&atilde;o NEO)</span></div>
+  <div class="irow"><span class="irl2">Voos oficiais</span><span class="irv2">1T25: 26.861 &middot; 4T25: &asymp;29.000 &middot; 1S26: &asymp;57.500 (&asymp;318/dia) &rarr; &asymp;116&ndash;120k voos/ano</span></div>
+  <div class="irow"><span class="irl2">Passageiros / LF 2025</span><span class="irv2">16,7M pax (+3,4%) &middot; LF 84,2% &middot; EBITDA recorrente &euro;742,9M (margem 17%) &middot; receita &euro;4,3 mil M</span></div>
+  <div class="irow"><span class="irl2">Hub Lisboa</span><span class="irv2">TAP &asymp;50% das opera&ccedil;&otilde;es de LIS (225,3k mov. 2024) &rarr; &asymp;113k mov. TAP/ano &asymp; 155 partidas/dia</span></div>
+  <div class="irow"><span class="irl2">Porto (OPO)</span><span class="irv2">16,9M pax 2025 (+6,3%) &middot; 21 novas rotas S26 &middot; TAP a expandir opera&ccedil;&atilde;o OPO</span></div>
+  <div class="irow"><span class="irl2">Privatiza&ccedil;&atilde;o (contexto)</span><span class="irv2">propostas vinculativas AF-KLM e Lufthansa (29/jul/26) por 44,9% &middot; negocia&ccedil;&otilde;es finais &middot; prazo 31/dez/26 &middot; frota e sustentabilidade s&atilde;o crit&eacute;rios</span></div>
+  <div class="irow"><span class="irl2">Processo atual de &aacute;gua</span><span class="irv2">ANEXO RF 720 (REV10 08MAY2025) &middot; sem refinamento din&acirc;mico no GOM/GOTM</span></div>
+  <div style="font-size:10.5px;color:var(--mu);margin-top:8px">Fontes: Resultados TAP FY2025 (abr/2026) e trimestrais; ANA/estat&iacute;sticas LIS &amp; OPO; ECO, Publituris, Aeroin, Observador, Euronews. Voos/ano interpolados dos trimestres publicados.</div>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:14px">
+<div class="prembx">
+  <div class="prem-t2">Par&acirc;metros do modelo</div>
+  <div class="irow"><span class="irl2">&Iacute;ndice consumo NB / WB</span><span class="irv2">0,10 / 0,15 L por pax por hora</span></div>
+  <div class="irow"><span class="irl2">Load factor</span><span class="irv2">82% edit&aacute;vel (oficial 2025: 84,2%)</span></div>
+  <div class="irow"><span class="irl2">Fator t&eacute;rmico</span><span class="irv2">0,97 curto raio (&lt;4.000 km) &middot; 1,00 longo raio</span></div>
+  <div class="irow"><span class="irl2">Fator CO&#8322;</span><span class="irv2">2,56 kg CO&#8322; / L QAV</span></div>
+  <div class="irow"><span class="irl2">Margem WaterLine</span><span class="irv2">consumo previsto + 10% operacional</span></div>
+  <div class="irow"><span class="irl2">Destinos sem QTA (&#8635;)</span><span class="irv2">BVC &middot; OXB &middot; TMS (+LAD no A330) e Norte de &Aacute;frica nos NB: &aacute;gua embarcada para <b>ida+volta</b> (2&times; consumo), conforme ANEXO RF 720</span></div>
+  <div class="irow"><span class="irl2">Pre&ccedil;o QAV</span><span class="irv2">0,90 &euro;/L default &middot; edit&aacute;vel (m&eacute;dia 2024-25: 0,79&ndash;0,85)</span></div>
+</div>
+<div class="prembx">
+  <div class="prem-t2">Rede &amp; calibra&ccedil;&atilde;o</div>
+  <div class="irow"><span class="irl2">Per&iacute;odo base</span><span class="irv2">semana-tipo Jul 2026, anualizada &times;52</span></div>
+  <div class="irow"><span class="irl2">Rede</span><span class="irv2">139 rotas &middot; 1.111 freq/sem (= 2.222 setores/sem &asymp; 317/dia)</span></div>
+  <div class="irow"><span class="irl2">Origem das rotas</span><span class="irv2">98 VooAVoo (TAP) + 41 rede oficial TAP</span></div>
+  <div class="irow"><span class="irl2">Freq. das 41 adicionadas</span><span class="irv2" style="color:var(--go)">estimativas p&uacute;blicas (*) &mdash; a confirmar com Cirium/OAG</span></div>
+  <div class="irow"><span class="irl2">Calibra&ccedil;&atilde;o vs oficial</span><span class="irv2">115.544 voos/ano &asymp; 97% do oficial &middot; LIS 134/155 partidas/dia</span></div>
+  <div class="irow"><span class="irl2">Uplift RF 720 por rota</span><span class="irv2">matriz do ANEXO RF 720 aplicada a cada par O/D</span></div>
+  <div class="irow"><span class="irl2">Elabora&ccedil;&atilde;o</span><span class="irv2">TAT Operating &middot; www.tatoperating.com</span></div>
+</div>
+</div>
+<div style="text-align:center;margin-top:8px"><button class="dpill" onclick="exportCSV()">&#11015; Exportar rotas (CSV)</button></div>
+</div>
+
+</div><!-- /main -->
+<div style="text-align:center;padding:14px;color:var(--mu2);font-size:11px">TAT WaterLine&trade; &middot; Smart Water. Real Results. &middot; An&aacute;lise independente TAT Operating para a TAP Air Portugal &middot; Confidencial &middot; Baseline: ANEXO RF 720 &middot; COW oficial Azul (D-365) + EY Sheet 5 &middot; <span id="ftrD"></span></div>
+
+<script>
+// [n,o,d,ac,cat,fq,dist,seats,tank,blk,term,rfL,sect,src,rt]  rt=1: sem QTA no destino — água embarcada ida+volta
+const R = [[1,"LIS","JFK","A330-900neo","WB",14,5420,268,700,7.15,1.0,350,1456,0,0],[2,"LIS","EWR","A330-900neo","WB",7,5430,268,700,7.16,1.0,350,728,0,0],[3,"LIS","MIA","A330-900neo","WB",14,7150,268,700,9.28,1.0,525,1456,0,0],[4,"LIS","ORD","A330-900neo","WB",7,7700,268,700,9.96,1.0,525,728,0,0],[5,"LIS","IAD","A330-900neo","WB",7,5830,268,700,7.65,1.0,525,728,0,0],[6,"LIS","LAX","A330-900neo","WB",7,9600,268,700,12.31,1.0,700,728,0,0],[7,"LIS","SFO","A330-900neo","WB",4,9500,268,700,12.19,1.0,700,416,0,0],[8,"LIS","MCO","A330-900neo","WB",3,7500,268,700,9.71,1.0,700,312,0,0],[9,"LIS","GRU","A330-900neo","WB",14,9510,268,700,12.2,1.0,525,1456,0,0],[10,"LIS","GIG","A330-900neo","WB",14,9250,268,700,11.88,1.0,525,1456,0,0],[11,"LIS","BSB","A330-900neo","WB",7,8310,268,700,10.72,1.0,525,728,0,0],[12,"LIS","SSA","A330-900neo","WB",7,7680,268,700,9.94,1.0,350,728,0,0],[13,"LIS","FOR","A330-900neo","WB",7,6700,268,700,8.73,1.0,350,728,0,0],[14,"LIS","REC","A330-900neo","WB",7,6420,268,700,8.38,1.0,350,728,0,0],[15,"LIS","CNF","A330-900neo","WB",7,8900,268,700,11.44,1.0,525,728,0,0],[16,"LIS","POA","A330-900neo","WB",4,10020,268,700,12.83,1.0,525,416,0,0],[17,"LIS","FLN","A330-900neo","WB",4,9750,268,700,12.49,1.0,525,416,0,0],[18,"LIS","CWB","A330-200","WB",3,9680,264,700,12.41,1.0,700,312,0,0],[19,"LIS","LAD","A330-900neo","WB",14,6340,268,700,8.28,1.0,700,1456,0,1],[20,"LIS","ABJ","A330-900neo","WB",7,5050,268,700,6.69,1.0,700,728,0,0],[21,"LIS","ACC","A330-900neo","WB",7,5320,268,700,7.02,1.0,700,728,0,0],[22,"LIS","CMN","A330-900neo","WB",4,3190,268,700,4.39,0.97,350,416,0,0],[23,"LIS","MPM","A330-900neo","WB",3,9880,268,700,12.65,1.0,525,312,0,0],[24,"LIS","EZE","A330-900neo","WB",7,10360,268,700,13.25,1.0,700,728,0,0],[25,"LIS","BOG","A330-900neo","WB",4,8210,268,700,10.59,1.0,700,416,0,0],[26,"LIS","CCS","A330-900neo","WB",3,6850,268,700,8.91,1.0,350,312,0,0],[27,"LIS","YYZ","A330-900neo","WB",7,5730,268,700,7.53,1.0,350,728,0,0],[28,"LIS","BOS","A330-900neo","WB",7,5420,268,700,7.15,1.0,350,728,0,0],[29,"LIS","NAT","A321LR","NB",7,5480,168,400,7.73,1.0,150,728,0,0],[30,"LIS","BEL","A321LR","NB",4,6580,168,400,9.2,1.0,150,416,0,0],[31,"LIS","MCZ","A321LR","NB",4,6020,168,400,8.45,1.0,150,416,0,0],[32,"LIS","MAO","A321LR","NB",3,7060,168,400,9.83,1.0,150,312,0,0],[33,"LIS","SLZ","A321LR","NB",2,6490,168,400,9.08,1.0,150,208,0,0],[34,"OPO","BOS","A321LR","NB",7,5490,168,400,7.75,1.0,150,728,0,0],[35,"OPO","EWR","A321LR","NB",4,5490,168,400,7.75,1.0,150,416,0,0],[36,"OPO","GRU","A330-900neo","WB",7,9600,268,700,12.31,1.0,525,728,0,0],[37,"OPO","GIG","A330-900neo","WB",7,9300,268,700,11.94,1.0,525,728,0,0],[38,"OPO","EWR","A330-900neo","WB",4,5490,268,700,7.23,1.0,350,416,0,0],[39,"OPO","LAD","A330-900neo","WB",7,6430,268,700,8.39,1.0,700,728,0,1],[40,"OPO","POA","A330-900neo","WB",3,10100,268,700,12.93,1.0,525,312,0,0],[41,"LIS","CDG","A321neo","NB",21,1450,196,200,2.38,0.97,100,2184,0,0],[42,"LIS","AMS","A321neo","NB",21,1870,196,200,2.94,0.97,100,2184,0,0],[43,"LIS","FRA","A321neo","NB",21,2300,196,200,3.51,0.97,100,2184,0,0],[44,"LIS","LHR","A321neo","NB",21,1740,196,200,2.76,0.97,100,2184,0,0],[45,"LIS","MAD","A321neo","NB",21,620,196,200,1.27,0.97,100,2184,0,0],[46,"LIS","BCN","A321neo","NB",21,1650,196,200,2.64,0.97,100,2184,0,0],[47,"LIS","FCO","A321neo","NB",14,2350,196,200,3.57,0.97,100,1456,0,0],[48,"LIS","MXP","A321neo","NB",14,2110,196,200,3.25,0.97,100,1456,0,0],[49,"LIS","MUC","A321neo","NB",14,2590,196,200,3.89,0.97,100,1456,0,0],[50,"LIS","ZRH","A321neo","NB",14,2090,196,200,3.23,0.97,100,1456,0,0],[51,"LIS","BRU","A321neo","NB",14,1840,196,200,2.9,0.97,100,1456,0,0],[52,"LIS","GVA","A321neo","NB",7,1940,196,200,3.03,0.97,100,728,0,0],[53,"LIS","VIE","A321neo","NB",7,2900,196,200,4.3,0.97,100,728,0,0],[54,"LIS","CPH","A321neo","NB",7,2920,196,200,4.33,0.97,100,728,0,0],[55,"LIS","ARN","A321neo","NB",7,3180,196,200,4.68,0.97,100,728,0,0],[56,"LIS","HEL","A321neo","NB",7,3400,196,200,4.97,0.97,100,728,0,0],[57,"LIS","OSL","A321neo","NB",7,2930,196,200,4.34,0.97,100,728,0,0],[58,"LIS","WAW","A321neo","NB",7,2890,196,200,4.29,0.97,100,728,0,0],[59,"LIS","PRG","A321neo","NB",7,2430,196,200,3.68,0.97,100,728,0,0],[60,"LIS","BUD","A321neo","NB",7,2810,196,200,4.18,0.97,100,728,0,0],[61,"LIS","ATH","A321neo","NB",7,3280,196,200,4.81,0.97,100,728,0,0],[62,"LIS","TLV","A321neo","NB",4,3700,196,200,5.37,0.97,150,416,0,0],[63,"OPO","TLV","A321LR","NB",3,3740,168,400,5.42,0.97,150,312,0,0],[64,"LIS","IST","A321neo","NB",7,3180,196,200,4.68,0.97,100,728,0,0],[65,"LIS","CMN","A321neo","NB",14,3190,196,200,4.69,0.97,200,1456,0,1],[66,"LIS","TUN","A321neo","NB",7,2230,196,200,3.41,0.97,200,728,0,1],[67,"LIS","DKR","A321neo","NB",7,2890,196,200,4.29,0.97,100,728,0,0],[68,"LIS","DSS","A321neo","NB",7,2890,196,200,4.29,0.97,150,728,0,0],[69,"LIS","BJL","A321neo","NB",7,2780,196,200,4.14,0.97,150,728,0,0],[70,"LIS","OXB","A321neo","NB",4,2710,196,200,4.05,0.97,200,416,0,1],[71,"LIS","BVC","A321neo","NB",7,2800,196,200,4.17,0.97,200,728,0,1],[72,"LIS","SID","A321neo","NB",7,2830,196,200,4.21,0.97,150,728,0,0],[73,"LIS","RAI","A321neo","NB",7,2920,196,200,4.33,0.97,150,728,0,0],[74,"LIS","VXE","A321neo","NB",4,2810,196,200,4.18,0.97,150,416,0,0],[75,"OPO","RAI","A321neo","NB",3,2970,196,200,4.4,0.97,150,312,0,0],[76,"LIS","LPA","A320neo","NB",7,1640,180,200,2.63,0.97,100,728,0,0],[77,"LIS","TFS","A320neo","NB",7,1880,180,200,2.95,0.97,100,728,0,0],[78,"LIS","PMI","A320neo","NB",7,1700,180,200,2.71,0.97,100,728,0,0],[79,"LIS","AGP","A320neo","NB",7,1530,180,200,2.48,0.97,100,728,0,0],[80,"LIS","ALC","A320neo","NB",7,1440,180,200,2.36,0.97,100,728,0,0],[81,"LIS","SVQ","A320neo","NB",7,310,180,200,0.86,0.97,100,728,0,0],[82,"LIS","BIO","A320neo","NB",7,840,180,200,1.57,0.97,100,728,0,0],[83,"LIS","VLC","A320neo","NB",7,1310,180,200,2.19,0.97,100,728,0,0],[84,"LIS","OPO","A320neo","NB",42,310,180,200,0.86,0.97,100,4368,0,0],[85,"LIS","FAO","A320neo","NB",21,280,180,200,0.82,0.97,100,2184,0,0],[86,"LIS","FNC","A321neo","NB",14,1070,196,200,1.87,0.97,100,1456,0,0],[87,"LIS","PDL","A321neo","NB",14,1430,196,200,2.35,0.97,100,1456,0,0],[88,"LIS","TER","A321neo","NB",7,1510,196,200,2.46,0.97,100,728,0,0],[89,"LIS","HOR","E190","NB",4,1790,106,110,2.83,0.97,50,416,0,0],[90,"LIS","SMA","E190","NB",4,1500,106,110,2.44,0.97,50,416,0,0],[91,"LIS","PXO","E190","NB",4,1000,106,110,1.78,0.97,50,416,0,0],[92,"OPO","PDL","A321neo","NB",7,1390,196,200,2.3,0.97,100,728,0,0],[93,"OPO","FNC","A321neo","NB",7,1050,196,200,1.85,0.97,100,728,0,0],[94,"OPO","TER","A321neo","NB",3,1490,196,200,2.43,0.97,100,312,0,0],[95,"OPO","FAO","E190","NB",14,300,106,110,0.85,0.97,50,1456,0,0],[96,"FAO","FNC","E190","NB",7,820,106,110,1.54,0.97,50,728,0,0],[97,"LIS","DME","E190","NB",4,3530,106,110,5.14,0.97,75,416,0,0],[98,"LIS","GVA","E190","NB",4,1940,106,110,3.03,0.97,50,416,0,0],[99,"LIS","ORY","A321neo","NB",28,1450,196,200,2.38,0.97,100,2912,1,0],[100,"LIS","LGW","A320neo","NB",14,1540,180,200,2.5,0.97,100,1456,1,0],[101,"LIS","DUB","A321neo","NB",10,1640,196,200,2.63,0.97,100,1040,1,0],[102,"LIS","MAN","A320neo","NB",7,1780,180,200,2.82,0.97,100,728,1,0],[103,"LIS","BER","A321neo","NB",12,2310,196,200,3.52,0.97,100,1248,1,0],[104,"LIS","DUS","A320neo","NB",7,1680,180,200,2.68,0.97,100,728,1,0],[105,"LIS","HAM","A320neo","NB",7,2130,180,200,3.28,0.97,100,728,1,0],[106,"LIS","STR","A320neo","NB",5,1830,180,200,2.88,0.97,100,520,1,0],[107,"LIS","VCE","A320neo","NB",7,1890,180,200,2.96,0.97,100,728,1,0],[108,"LIS","NAP","A321neo","NB",7,1980,196,200,3.08,0.97,100,728,1,0],[109,"LIS","BLQ","A320neo","NB",7,1800,180,200,2.84,0.97,100,728,1,0],[110,"LIS","FLR","E190","NB",7,1650,106,110,2.64,0.97,50,728,1,0],[111,"LIS","BSL","A320neo","NB",6,1620,180,200,2.6,0.97,100,624,1,0],[112,"LIS","LUX","E190","NB",7,1700,106,110,2.71,0.97,50,728,1,0],[113,"LIS","SCQ","E190","NB",5,470,106,110,1.07,0.97,50,520,1,0],[114,"LIS","OVD","E190","NB",5,700,106,110,1.38,0.97,50,520,1,0],[115,"LIS","FUE","A320neo","NB",3,1320,180,200,2.2,0.97,100,312,1,0],[116,"LIS","IBZ","A320neo","NB",7,1010,180,200,1.79,0.97,100,728,1,0],[117,"LIS","MAH","A320neo","NB",4,1200,180,200,2.04,0.97,100,416,1,0],[118,"LIS","RAK","A320neo","NB",7,800,180,200,1.51,0.97,200,728,1,1],[119,"LIS","TNG","A320neo","NB",5,480,180,200,1.09,0.97,200,520,1,1],[120,"LIS","OUD","A320neo","NB",3,850,180,200,1.58,0.97,200,312,1,1],[121,"LIS","AGA","A320neo","NB",4,920,180,200,1.67,0.97,200,416,1,1],[122,"LIS","ALG","A320neo","NB",5,1240,180,200,2.1,0.97,200,520,1,1],[123,"LIS","DJE","A320neo","NB",2,1860,180,200,2.92,0.97,200,208,1,1],[124,"LIS","MIR","A320neo","NB",2,1720,180,200,2.74,0.97,200,208,1,1],[125,"LIS","TMS","A321LR","NB",4,5450,168,400,7.69,1.0,200,416,1,1],[126,"LIS","CPT","A330-900neo","WB",3,8580,268,700,11.05,1.0,700,312,1,0],[127,"LIS","YUL","A330-900neo","WB",5,5230,268,700,6.91,1.0,525,520,1,0],[128,"LIS","CUN","A330-900neo","WB",3,8000,268,700,10.33,1.0,525,312,1,0],[129,"OPO","ORY","A320neo","NB",21,1210,180,200,2.06,0.97,100,2184,1,0],[130,"OPO","MAD","E190","NB",14,420,106,110,1.01,0.97,50,1456,1,0],[131,"OPO","BCN","E190","NB",7,900,106,110,1.65,0.97,50,728,1,0],[132,"OPO","GVA","E190","NB",7,1360,106,110,2.26,0.97,50,728,1,0],[133,"OPO","ZRH","E190","NB",7,1560,106,110,2.52,0.97,50,728,1,0],[134,"OPO","BRU","E190","NB",6,1550,106,110,2.51,0.97,50,624,1,0],[135,"OPO","AMS","A320neo","NB",7,1670,180,200,2.67,0.97,100,728,1,0],[136,"OPO","MXP","E190","NB",5,1490,106,110,2.43,0.97,50,520,1,0],[137,"OPO","LUX","E190","NB",5,1450,106,110,2.38,0.97,50,520,1,0],[138,"OPO","MUC","E190","NB",4,1940,106,110,3.03,0.97,50,416,1,0],[139,"OPO","LGW","A320neo","NB",5,1300,180,200,2.18,0.97,100,520,1,0]];
+const IDX = {WB:0.15, NB:0.10};
+const FAM = a => a.startsWith('A330') ? 'A330' : a;
+const FCL = {'A330':'f330','A321LR':'f21L','A321neo':'f21n','A320neo':'f20n','E190':'fe90'};
+const nf0 = new Intl.NumberFormat('pt-PT',{maximumFractionDigits:0});
+const nf1 = new Intl.NumberFormat('pt-PT',{maximumFractionDigits:1,minimumFractionDigits:1});
+const eur = v => '€'+nf0.format(Math.round(v));
+const eurM = v => '€ '+(v/1e6).toLocaleString('pt-PT',{maximumFractionDigits:2,minimumFractionDigits:2})+'M';
+const P  = () => Math.max(parseFloat(document.getElementById('qavPrice').value)||0,0);
+const LF = () => Math.min(Math.max(parseFloat(document.getElementById('lfInput').value)||82,1),100)/100;
+const COW = ac => Math.max(parseFloat((document.getElementById('cow_'+ac)||{}).value)||0.04,0);
+
+function calc(r){ // per-route economics at current inputs
+  const [n,o,d,ac,cat,fq,dist,seats,tank,blk,term,rfL,sect,src,rt]=r;
+  const pax = Math.round(seats*LF());
+  const cons = pax*blk*IDX[cat]*term;           // consumo por perna
+  const cover = rt===1 ? cons*2 : cons;          // sem QTA no destino: cobrir ida+volta
+  const wl = Math.min(cover*1.1, tank);          // uplift WL na partida
+  const k = COW(ac);
+  // vs tanque cheio, por perna (na volta sem QTA, baseline e WL descem o consumo da ida — a diferença por perna mantém-se)
+  const qWl = Math.max(tank-cover,0)*k*blk;
+  const qRf = Math.max(tank-rfL,0)*k*blk;
+  return {pax,cons,cover,rt,wl,k,qWlY:qWl*sect,qRfY:qRf*sect,h2oY:Math.max(tank-cover,0)*sect};
+}
+function totals(rows){
+  const t={wl:0,rf:0,h2o:0,s:0,n:0};
+  rows.forEach(r=>{const c=calc(r); t.wl+=c.qWlY; t.rf+=c.qRfY; t.h2o+=c.h2oY; t.s+=r[12]; t.n++;});
+  return t;
+}
+function go(p){
+  ['dash','wtril','valid','rotas','rf720','proj','prem'].forEach(x=>{
+    document.getElementById('p-'+x).classList.toggle('on',x===p);
+    const t=document.getElementById('t-'+x); if(t)t.classList.toggle('on',x===p);
+  });
+}
+function brow(lbl, v, mx, grad){
+  return '<div class="brw"><div class="brl" title="'+lbl+'">'+lbl+'</div><div class="brt"><div class="brf" style="width:'+Math.max(v/mx*100,2)+'%;background:'+grad+'"></div></div><div class="bre">'+eur(v)+'</div></div>';
+}
+const GRF='linear-gradient(90deg,#8a6510,#c9932f)', GWL='linear-gradient(90deg,#009A44,#16b45e)';
+
+function render(){
+  const p=P(), T=totals(R);
+  const wlE=T.wl*p, rfE=T.rf*p;
+  // panels
+  document.getElementById('rfHero').textContent = eurM(rfE)+'/ano';
+  document.getElementById('rfHeroS').textContent = nf0.format(Math.round(T.rf))+' L QAV · '+nf0.format(Math.round(T.rf*2.56/1000))+' t CO₂ · '+T.n+' rotas · '+nf0.format(T.s)+' voos/ano · vs tanque cheio';
+  document.getElementById('rfQavL').textContent = nf0.format(Math.round(T.rf))+' L';
+  document.getElementById('rfCo2').textContent = nf0.format(Math.round(T.rf*2.56/1000))+' t';
+  document.getElementById('tatHero').textContent = eurM(wlE)+'/ano';
+  document.getElementById('tatHeroS').textContent = nf0.format(Math.round(T.wl))+' L QAV · '+nf0.format(Math.round(T.wl*2.56/1000))+' t CO₂ · '+nf0.format(Math.round(T.h2o))+' L de água não embarcada/ano';
+  document.getElementById('tatQavL').textContent = nf0.format(Math.round(T.wl))+' L';
+  document.getElementById('tatCo2').textContent = nf0.format(Math.round(T.wl*2.56/1000))+' t';
+  document.getElementById('tatH2o').textContent = nf0.format(Math.round(T.h2o))+' L';
+  // per-fleet bars
+  const fams={};
+  R.forEach(r=>{const c=calc(r), f=FAM(r[3]); fams[f]=fams[f]||{rf:0,wl:0}; fams[f].rf+=c.qRfY*p; fams[f].wl+=c.qWlY*p;});
+  const fmx=Math.max(...Object.values(fams).map(x=>Math.max(x.wl,x.rf)),1);
+  const order=Object.entries(fams).sort((a,b)=>b[1].wl-a[1].wl);
+  document.getElementById('rfBars').innerHTML = order.map(([f,v])=>brow(f,v.rf,fmx,GRF)).join('');
+  document.getElementById('tatBars').innerHTML = order.map(([f,v])=>brow(f,v.wl,fmx,GWL)).join('');
+  // top 15
+  const withE = R.map(r=>({r,c:calc(r)}));
+  const t15=(key,el,grad)=>{
+    const rows=[...withE].sort((a,b)=>b.c[key]-a.c[key]).slice(0,15);
+    const mx=rows[0].c[key]*p||1;
+    document.getElementById(el).innerHTML = rows.map(x=>brow(x.r[1]+'–'+x.r[2]+' '+FAM(x.r[3]), x.c[key]*p, mx, grad)).join('');
+  };
+  t15('qRfY','topRf',GRF); t15('qWlY','topWl',GWL);
+  // projection
+  const g = 1+Math.max(parseFloat(document.getElementById('grIn').value)||0,0)/100;
+  const mults=[1,1,g,g*g,g*g*g,g*g*g*g]; const anos=[2026,2027,2028,2029,2030,2031];
+  const pmx=Math.max(wlE*mults[5],1);
+  let accR=0, accW=0;
+  document.getElementById('projRf').innerHTML = anos.map((a,i)=>{accR+=rfE*mults[i]; return brow(String(a), rfE*mults[i], pmx, GRF);}).join('');
+  document.getElementById('projWl').innerHTML = anos.map((a,i)=>{accW+=wlE*mults[i]; return brow(String(a), wlE*mults[i], pmx, GWL);}).join('');
+  document.getElementById('accRf').textContent = eurM(accR);
+  document.getElementById('accWl').textContent = eurM(accW);
+  document.getElementById('accCo2').textContent = nf0.format(Math.round(T.wl*2.56/1000*(mults.reduce((a,b)=>a+b,0))))+' t';
+  buildTri(); noqta();
+  rT(); vre();
+}
+
+// ===== Trilho: 6 perfis de frota, um dia típico =====
+const byR=(o,d,ac)=>R.find(r=>r[1]===o&&r[2]===d&&r[3]===ac);
+const TRI=[
+ {reg:'A320neo · dia típico LIS',legs:[['LIS','AGP','A320neo','07:05','Banco manhã'],['LIS','PMI','A320neo','13:20','Tarde'],['LIS','BIO','A320neo','19:40','Banco noite']]},
+ {reg:'A321neo · dia típico LIS',legs:[['LIS','CDG','A321neo','06:40','Banco manhã'],['LIS','LHR','A321neo','13:05','Tarde'],['LIS','FNC','A321neo','20:15','Banco noite']]},
+ {reg:'A321LR · longo curso NB',legs:[['LIS','NAT','A321LR','09:35','Ida'],['LIS','NAT','A321LR','17:50','Volta (NAT→LIS)','v'],['LIS','BEL','A321LR','23:55','Noturno']]},
+ {reg:'A330-900neo · longo curso',legs:[['LIS','GRU','A330-900neo','10:10','Ida'],['LIS','GRU','A330-900neo','22:35','Volta (GRU→LIS)','v'],['LIS','JFK','A330-900neo','11:45','Dia seguinte']]},
+ {reg:'A330-900neo · sem QTA ↺',legs:[['LIS','LAD','A330-900neo','10:05','Ida · embarca ida+volta'],['LIS','LAD','A330-900neo','19:30','Volta (LAD→LIS) · sem abastecimento','v']]},
+ {reg:'E190 · regional',legs:[['LIS','HOR','E190','08:15','Manhã'],['LIS','SMA','E190','14:30','Tarde'],['LIS','PXO','E190','19:10','Noite']]}
+];
+function buildTri(){
+  const p=P();
+  document.getElementById('triCards').innerHTML = TRI.map(t=>{
+    const legs=t.legs.map(l=>{const r=byR(l[0],l[1],l[2]); const c=calc(r); return {r,c,time:l[3],onda:l[4],volta:l[5]==='v'};});
+    const tank=legs[0].r[8], ac=legs[0].r[3];
+    const carried=(x,who)=>{ // água a bordo à partida da perna
+      const up = who==='rf'? x.r[11] : x.c.wl;
+      if(x.volta && x.c.rt===1) return Math.max(up-x.c.cons,0);       // sem QTA: parte com o remanescente
+      return up;                                                      // perna com abastecimento
+    };
+    let morto=0,qav=0;
+    legs.forEach(x=>{const d=carried(x,'rf')-carried(x,'wl'); morto+=Math.max(d,0); qav+=Math.max(d,0)*x.c.k*x.r[9];});
+    const cell=(v,cls)=>'<div class="tri-cell"><div class="tri-bar"><i class="'+cls+'" style="width:'+Math.min(v/tank*100,100)+'%"></i></div><span class="tri-q">'+nf0.format(v)+' L</span></div>';
+    return '<div class="tri-card"><div class="tri-hd"><b>'+t.reg+'</b> <span class="tag">'+ac+' · tanque '+tank+' L · '+legs.length+' pernas</span><span class="tri-badge">RF720 vs WaterLine</span></div>'
+    +'<div class="tri-row tri-hdrow"><span class="tri-lbl"></span><div class="tri-cells">'+legs.map(x=>'<div class="tri-cell tri-ch"><b>'+x.time+'</b><span>'+(x.volta?x.r[2]+'→'+x.r[1]:x.r[1]+'→'+x.r[2])+'</span><span class="tri-onda">'+x.onda+'</span></div>').join('')+'</div><span class="tri-tail"></span></div>'
+    +'<div class="tri-row"><span class="tri-lbl tl-pol">ANEXO RF 720</span><div class="tri-cells">'+legs.map(x=>cell(carried(x,'rf'),'tl-pol')).join('')+'</div><span class="tri-tail">uplift fixo da matriz</span></div>'
+    +'<div class="tri-row"><span class="tri-lbl tl-wl">WaterLine</span><div class="tri-cells">'+legs.map(x=>cell(carried(x,'wl'),'tl-wl')).join('')+'</div><span class="tri-tail">consumo previsto + 10%</span></div>'
+    +'<div class="tri-sum"><div><span class="tri-k">'+nf0.format(Math.round(morto))+' L</span><span class="tri-l">água morta no dia vs WaterLine</span></div><div class="tri-sep"></div><div><span class="tri-m">'+nf1.format(legs.reduce((a,x)=>a+x.r[9],0))+' h</span><span class="tri-l">block total do dia</span></div><div class="tri-sep"></div><div><span class="tri-qv">'+nf1.format(qav)+' L</span><span class="tri-l">QAV queimado à toa no dia · '+eur(qav*p)+'</span></div></div></div>';
+  }).join('');
+}
+// ===== Bases sem QTA: perda estimada =====
+function noqta(){
+  const p=P();
+  const rows=R.filter(r=>r[14]===1).map(r=>({r,c:calc(r)})).sort((a,b)=>(b.c.qWlY-b.c.qRfY)-(a.c.qWlY-a.c.qRfY));
+  let tot=0, totRf=0, totWl=0;
+  document.getElementById('noqtaTb').innerHTML = rows.map(({r,c})=>{
+    const perda=(c.qWlY-c.qRfY)*p; tot+=perda; totRf+=c.qRfY*p; totWl+=c.qWlY*p;
+    return '<tr><td><b>'+r[1]+'–'+r[2]+'</b>'+(r[13]===1?' <span style="color:var(--go)">*</span>':'')+'</td><td><span class="ft '+FCL[FAM(r[3])]+'">'+r[3]+'</span></td><td class="num">'+r[5]+'</td><td class="num" style="color:#a3721a;font-weight:700">'+r[11]+'</td><td class="num" style="color:var(--acc);font-weight:700">'+nf0.format(c.wl)+'</td><td class="num">'+nf0.format(Math.max(r[11]-c.wl,0))+'</td><td class="num">'+eur(c.qRfY*p)+'</td><td class="num">'+eur(c.qWlY*p)+'</td><td class="num" style="color:var(--rd);font-weight:800">'+eur(perda)+'</td></tr>';
+  }).join('');
+  document.getElementById('noqtaSum').innerHTML = rows.length+' rotas sem QTA / round trip · RF720 captura <b>'+eur(totRf)+'/ano</b> vs WaterLine <b>'+eur(totWl)+'/ano</b> → <b style="color:var(--rd)">perda estimada de '+eur(tot)+'/ano</b> por manter o 4/4 fixo nestas bases.';
+}
+
+function rT(){
+  const p=P(), q=(document.getElementById('q').value||'').toUpperCase();
+  const srt=document.getElementById('srt').value;
+  let rows=R.filter(r=>(r[1]+r[2]+r[3]+r[4]).toUpperCase().includes(q)).map(r=>({r,c:calc(r)}));
+  const key={eur:x=>x.c.qWlY,rf:x=>x.c.qRfY,fq:x=>x.r[5],dist:x=>x.r[6],n:x=>-x.r[0]}[srt];
+  rows.sort((a,b)=>key(b)-key(a));
+  document.getElementById('tb').innerHTML = rows.map(({r,c})=>{
+    const f=FAM(r[3]);
+    const est = (r[13]===1 ? '<span title="Rota da rede oficial TAP — frequência estimada (fontes públicas), a confirmar com Cirium/OAG" style="color:var(--go);cursor:help"> *</span>' : '') + (c.rt===1 ? '<span title="Sem QTA no destino — água embarcada para ida+volta (ANEXO RF 720)" style="color:var(--acc);cursor:help"> ↺</span>' : '');
+    return '<tr><td style="color:var(--mu2)">'+r[0]+'</td><td><b>'+r[1]+'–'+r[2]+'</b>'+est+'</td><td><span class="ft '+FCL[f]+'">'+r[3]+'</span></td><td class="num">'+r[5]+'</td><td class="num">'+nf0.format(r[6])+'</td><td class="num">'+nf1.format(r[9])+'</td><td class="num">'+c.pax+'</td><td class="num">'+r[8]+'</td><td class="num" style="color:#a3721a;font-weight:700">'+r[11]+'</td><td class="num">'+nf0.format(c.cover)+'</td><td class="num" style="color:var(--acc);font-weight:700">'+nf0.format(c.wl)+'</td><td class="num">'+nf0.format(r[12])+'</td><td class="num" style="color:#a3721a;font-weight:700">'+eur(c.qRfY*p)+'</td><td class="num" style="color:var(--acc);font-weight:800">'+eur(c.qWlY*p)+'</td></tr>';
+  }).join('');
+  const t=rows.reduce((a,x)=>{a.wl+=x.c.qWlY;a.rf+=x.c.qRfY;return a;},{wl:0,rf:0});
+  document.getElementById('tinfo').textContent = rows.length+' rotas · RF720 '+eur(t.rf*p)+' · WaterLine '+eur(t.wl*p);
+}
+
+function vfill(){
+  const s=document.getElementById('vRoute');
+  const nb=[...R].filter(r=>r[4]==='NB').sort((a,b)=>(a[1]+a[2]).localeCompare(b[1]+b[2]));
+  s.innerHTML = nb.map(r=>'<option value="'+r[0]+'">'+r[1]+' → '+r[2]+' · '+r[3]+(r[13]===1?' *':'')+'</option>').join('');
+  s.value=nb[0][0];
+}
+function vre(){
+  const p=P(), id=parseInt(document.getElementById('vRoute').value)||1;
+  const r=R.find(x=>x[0]===id); if(!r)return;
+  const [n,o,d,ac,cat,fq,dist,seats,tank,blk,term,rfL,sect,src,rt]=r;
+  const c=calc(r);
+  document.getElementById('vAc').textContent = ac+' · '+cat+' · '+c.pax+' pax@LF · block '+nf1.format(blk)+' h · '+fq+'x/sem'+(rt===1?' · ↺ sem QTA no destino':'')+(src===1?' · freq. estimada*':'');
+  document.getElementById('vTank').textContent = nf0.format(tank)+' L';
+  document.getElementById('vRf').textContent = nf0.format(rfL)+' L';
+  document.getElementById('vRfS').textContent = Math.round(rfL/tank*100)+'% do tanque · matriz ANEXO RF 720'+(rt===1?' · cobre ida+volta':'');
+  document.getElementById('vCons').textContent = nf0.format(c.cover)+' L';
+  document.getElementById('vConsS').textContent = c.pax+' pax × '+nf1.format(blk)+' h × '+(cat==='WB'?'0,15':'0,10')+(term<1?' × 0,97':'')+(rt===1?' × 2 pernas (ida+volta)':'');
+  document.getElementById('vWl').textContent = nf0.format(c.wl)+' L';
+  const seg=(w,cor,t)=>'<div class="vseg" style="width:'+(w/tank*100)+'%;background:'+cor+'" title="'+t+'">'+(w/tank>0.12?nf0.format(w)+' L':'')+'</div>';
+  const exc=Math.max(rfL-c.wl,0), rest=Math.max(tank-Math.max(rfL,c.wl),0);
+  document.getElementById('vBar').innerHTML = seg(c.cover,'#e8801a',rt===1?'Consumo previsto ida+volta':'Consumo previsto')+seg(Math.max(c.wl-c.cover,0),'#16b45e','Margem WaterLine')+(exc>0?seg(exc,'#c9932f','Diferença RF720 vs WaterLine'):'')+seg(rest,'#cfe0d5','Restante até tanque cheio');
+  const rtTxt = rt===1?' Sem QTA no destino: a água embarcada na partida cobre as duas pernas (ida+volta).':'';
+  document.getElementById('vBarS').textContent = (rfL>c.wl
+    ? 'Programa RF 720: uplift fixo de '+nf0.format(rfL)+' L · Programa WaterLine: uplift dinâmico de '+nf0.format(c.wl)+' L para este voo.'
+    : 'Programa RF 720: uplift fixo de '+nf0.format(rfL)+' L, próximo ou abaixo da recomendação WaterLine ('+nf0.format(c.wl)+' L) — a WaterLine monitoriza o risco de água insuficiente.')+rtTxt;
+  document.getElementById('vErf').textContent = eur(c.qRfY*p);
+  document.getElementById('vEwl').textContent = eur(c.qWlY*p);
+  document.getElementById('vDq').textContent = nf0.format(Math.round(c.qWlY))+' L';
+  document.getElementById('vDqS').textContent = nf0.format(sect)+' voos/ano · '+(c.qWlY*2.56/1000).toLocaleString('pt-PT',{maximumFractionDigits:1})+' t CO₂';
+  document.getElementById('vDw').textContent = (rfL-c.wl>0?'−':'+')+nf0.format(Math.abs(rfL-c.wl))+' L';
+  // 2ª rodada (volta) — rotas sem QTA
+  const v2=document.getElementById('v2nd');
+  if(rt===1){
+    v2.style.display='block';
+    const seg2=(w,cor,t)=>'<div class="vseg" style="width:'+(Math.max(w,0)/tank*100)+'%;background:'+cor+'" title="'+t+'">'+(w/tank>0.1?nf0.format(Math.max(w,0))+' L':'')+'</div>';
+    const rfBack=Math.max(rfL-c.cons,0), wlBack=Math.max(c.wl-c.cons,0);
+    const rfExc=Math.max(rfBack-c.cons,0), wlMar=Math.max(wlBack-c.cons,0);
+    document.getElementById('v2BarRf').innerHTML = seg2(c.cons,'#e8801a','Consumo da volta')+seg2(rfExc,'#c9932f','Excesso RF720 a bordo')+seg2(tank-rfBack,'#cfe0d5','Vazio');
+    document.getElementById('v2BarWl').innerHTML = seg2(c.cons,'#e8801a','Consumo da volta')+seg2(wlMar,'#16b45e','Margem WaterLine')+seg2(tank-wlBack,'#cfe0d5','Vazio');
+    document.getElementById('v2S').innerHTML = 'A volta parte com o remanescente da ida: <b style="color:var(--gold)">RF 720 '+nf0.format(rfBack)+' L</b> (pousa em '+o+' com '+nf0.format(Math.max(rfBack-c.cons,0))+' L de excesso transportado nas duas pernas) · <b style="color:var(--acc)">WaterLine '+nf0.format(wlBack)+' L</b> (pousa com '+nf0.format(wlMar)+' L — apenas a margem de segurança). Validação da 2ª rodada: a recomendação cobre o consumo da volta ('+nf0.format(c.cons)+' L) com folga em ambas.';
+  } else { v2.style.display='none'; }
+  document.getElementById('vNote').innerHTML = 'Em <strong>'+o+' → '+d+'</strong>, medidos de forma independente vs tanque cheio: o programa <strong>ANEXO RF 720</strong> gera <strong>'+eur(c.qRfY*p)+'/ano</strong> (uplift fixo de '+nf0.format(rfL)+' L) e o programa <strong>TAT WaterLine</strong> gera <strong>'+eur(c.qWlY*p)+'/ano</strong> (uplift dinâmico, ajustado ao consumo previsto de cada voo).';
+}
+
+function exportCSV(){
+  const p=P();
+  const h=['#','Origem','Destino','Aeronave','Cat','Freq_sem','Dist_km','Assentos','Tanque_L','Block_h','Termico','RF720_L','Voos_ano','Pax_LF','Consumo_L','WL_L','COW','EUR_ano_RF720','EUR_ano_WL','Fonte_freq'];
+  const lines=[h.join(';')].concat(R.map(r=>{const c=calc(r);return [r[0],r[1],r[2],r[3],r[4],r[5],r[6],r[7],r[8],r[9],r[10],r[11],r[12],c.pax,Math.round(c.cons),Math.round(c.wl),c.k,Math.round(c.qRfY*p),Math.round(c.qWlY*p),(r[13]===1?'estimada_publica':'VooAVoo_TAP')].join(';')}));
+  const b=new Blob(['﻿'+lines.join('\n')],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='TAT_WaterLine_TAP_rotas.csv'; a.click();
+}
+
+const today=new Date();
+document.getElementById('hdrD').textContent = '📅 '+today.toLocaleDateString('pt-PT',{day:'2-digit',month:'short',year:'numeric'}).toUpperCase();
+document.getElementById('ftrD').textContent = 'Gerado em '+today.toLocaleDateString('pt-PT');
+vfill(); render();
+</script>
+</body></html>
